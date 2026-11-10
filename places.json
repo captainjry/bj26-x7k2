@@ -1,0 +1,190 @@
+{
+  "crystal-orange": {
+    "name": "Crystal Orange Sanlitun Taikoo Li Beijing",
+    "name_zh": "北京三里屯太古里桔子水晶酒店",
+    "address_zh": "北京市朝阳区农展馆南路12号1号楼1层",
+    "city_zh": "北京",
+    "phone": "+86-10-85221688",
+    "match": ["Land PEK", "Train -> Beijing"]
+  },
+  "thaiwoo-nanshanli": {
+    "name": "Thaiwoo Town Nanshanli Hotel",
+    "name_zh": "太舞小镇南山里酒店",
+    "address_zh": "河北省张家口市崇礼区四台嘴乡太舞小镇南山里D座",
+    "city_zh": "张家口",
+    "phone": "+86-313-4778300",
+    "match": ["Arrive resort"]
+  },
+  "pek": {
+    "name": "Beijing Capital International Airport, Terminal 3",
+    "name_zh": "北京首都国际机场 T3航站楼",
+    "address_zh": "北京市顺义区首都国际机场3号航站楼",
+    "city_zh": "北京",
+    "match": ["-> Airport"]
+  },
+  "qinghe-station": {
+    "name": "Qinghe Railway Station",
+    "name_zh": "清河站",
+    "address_zh": "北京市海淀区清河站",
+    "city_zh": "北京",
+    "match": ["Train -> Chongli"]
+  },
+  "lama-temple": {
+    "name": "Lama Temple",
+    "name_zh": "雍和宫",
+    "address_zh": "北京市东城区雍和宫大街12号",
+    "city_zh": "北京",
+    "match": ["Lama Temple"],
+    "note_en": "Opens 9:00. Sources conflict on booking; one 2026 source says timed entry released 7 days ahead at midnight, so book to be safe."
+  },
+  "universal-beijing": {
+    "name": "Universal Beijing Resort",
+    "name_zh": "北京环球度假区（北京环球影城）",
+    "address_zh": "北京市通州区北京环球度假区",
+    "city_zh": "北京",
+    "match": ["Universal"]
+  },
+  "feidachu": {
+    "name": "Feidachu, Sanlitun Taikoo Li",
+    "name_zh": "费大厨辣椒炒肉（三里屯太古里店）",
+    "address_zh": "北京市朝阳区三里屯路19号三里屯太古里",
+    "city_zh": "北京",
+    "match": ["Feidachu"],
+    "note_en": "Sanlitun Taikoo Li. Lunch from 11:00, queue numbers from ~10:30. Walk-in, long queues."
+  },
+  "16mm-cafe": {
+    "name": "16mm Cafe, Nanluoguxiang",
+    "name_zh": "16毫米咖啡",
+    "address_zh": "北京市东城区南锣鼓巷57号",
+    "city_zh": "北京",
+    "match": ["16 MM Cafe"],
+    "note_en": "57 Nanluoguxiang. 10:00-02:00. Goldfish under a glass floor."
+  },
+  "tiananmen-square": {
+    "name": "Tiananmen Square",
+    "name_zh": "天安门广场",
+    "address_zh": "北京市东城区东长安街天安门广场",
+    "city_zh": "北京",
+    "match": ["Tian an men"]
+  },
+  "qianmen-street": {
+    "name": "Qianmen Street",
+    "name_zh": "前门大街",
+    "address_zh": "北京市东城区前门大街",
+    "city_zh": "北京",
+    "match": ["Qienmen", "Qianmen"],
+    "note_en": "At 16:30 take a remote queue number for Peking Chamber: WeChat mini-program 'Siji Minfu' → take a queue number (pai dui qu hao)."
+  },
+  "peking-chamber": {
+    "name": "Siji Minfu Roast Duck (Peking Chamber), Forbidden City branch",
+    "name_zh": "四季民福烤鸭店（故宫店）",
+    "address_zh": "北京市东城区南池子大街11号",
+    "city_zh": "北京",
+    "match": ["Peking Chamber"],
+    "note_en": "= Siji Minfu, Forbidden City branch, 11 Nanchizi St (Tiananmen East, L1). 10:30-21:30. Walk-in wait 1-3 hr, use the remote queue."
+  },
+  "jindingxuan": {
+    "name": "Jin Ding Xuan, Ditan branch",
+    "name_zh": "金鼎轩（地坛店）",
+    "address_zh": "北京市东城区和平里西街77号",
+    "city_zh": "北京",
+    "match": ["JinDingXuan"],
+    "note_en": "Jin Ding Xuan, Ditan branch, 77 Hepingli West St (Yonghegong, L2/L5). 24h. ~40 min taxi from Universal; resort shuttle stops 20:40."
+  },
+  "shuiguo-spa": {
+    "name": "Shuiguo Tangquan spa, Sihui",
+    "name_zh": "水裹汤泉（四惠店）",
+    "address_zh": "北京市朝阳区四惠",
+    "city_zh": "北京",
+    "match": ["ShuiGuo"],
+    "note_en": "Shuiguo Tangquan, Sihui (Sihui East, L1). 24h. ~20 min from Sanlitun. Ticket on Trip.com or at door. Bring passports. Bathing is nude, men and women separate."
+  },
+  "mutianyu": {
+    "name": "Mutianyu Great Wall",
+    "name_zh": "慕田峪长城",
+    "address_zh": "北京市怀柔区渤海镇慕田峪村",
+    "city_zh": "北京",
+    "match": ["Mutianyu"]
+  },
+  "carbo": {
+    "name": "Carbo, Friendship Store back courtyard",
+    "name_zh": "Carbo（友谊商店后院）",
+    "address_zh": "北京市朝阳区建国门外大街17号友谊商店",
+    "city_zh": "北京",
+    "match": ["Carbo"]
+  },
+  "wangfujing": {
+    "name": "Wangfujing Street",
+    "name_zh": "王府井步行街",
+    "address_zh": "北京市东城区王府井大街",
+    "city_zh": "北京",
+    "match": ["Wangfujin"]
+  },
+  "long-time-ago": {
+    "name": "Long Time Ago lamb skewers, 3.3 Mall Sanlitun",
+    "name_zh": "很久以前羊肉串（三里屯3.3店）",
+    "address_zh": "北京市朝阳区三里屯路33号三里屯3.3大厦5层",
+    "city_zh": "北京",
+    "match": ["Long time Ago"],
+    "note_en": "Henjiu Yiqian lamb skewers, 3.3 Mall 5F, Sanlitun. Opens 17:00. Remote queue on WeChat mini-program 'Henjiu Yiqian'."
+  },
+  "forbidden-city": {
+    "name": "Forbidden City (Palace Museum)",
+    "name_zh": "故宫博物院",
+    "address_zh": "北京市东城区景山前街4号",
+    "city_zh": "北京",
+    "match": ["Forbidden City"]
+  },
+  "fangzhuanchang-69": {
+    "name": "Fangzhuanchang No. 69 Zhajiang Noodles",
+    "name_zh": "方砖厂69号炸酱面",
+    "address_zh": "北京市东城区方砖厂胡同69号",
+    "city_zh": "北京",
+    "match": ["Lunch near Forbidden City"],
+    "note_en": "Her pick: Fangzhuanchang No. 69 zhajiang noodles (Michelin Bib, 10-15 min taxi, queue; this is the driver card) / Chengdu Zhujingban Sichuan (5-8 min walk from north gate) / Heyan Roubing Beijing meat pie (east gate)."
+  },
+  "summer-palace": {
+    "name": "Summer Palace",
+    "name_zh": "颐和园",
+    "address_zh": "北京市海淀区新建宫门路19号",
+    "city_zh": "北京",
+    "match": ["Summer palace"]
+  },
+  "hu-teahouse-hotpot": {
+    "name": "Hu Teahouse Hotpot, Sanlitun SOHO",
+    "name_zh": "壶·茶馆火锅（三里屯SOHO店）",
+    "address_zh": "北京市朝阳区工人体育场北路8号三里屯SOHO 1号楼3层",
+    "city_zh": "北京",
+    "match": ["Hu tea house"],
+    "note_en": "Hu Teahouse Hotpot, Sanlitun SOHO Bldg 1, 3F. 24h, walk in. ~¥128/person. ~1 hr taxi from Summer Palace."
+  },
+  "sanlitun-taikoo-li": {
+    "name": "Sanlitun Taikoo Li",
+    "name_zh": "三里屯太古里",
+    "address_zh": "北京市朝阳区三里屯路19号",
+    "city_zh": "北京",
+    "match": ["Salitun", "Sanlitun"]
+  },
+  "temple-of-heaven": {
+    "name": "Temple of Heaven Park",
+    "name_zh": "天坛公园",
+    "address_zh": "北京市东城区天坛公园",
+    "city_zh": "北京",
+    "match": ["Temple of Haven", "Temple of Heaven"]
+  },
+  "voyage-coffee": {
+    "name": "Voyage Coffee, Sanlihe Park branch",
+    "name_zh": "Voyage Coffee（三里河公园店）",
+    "address_zh": "北京市东城区三里河公园",
+    "city_zh": "北京",
+    "match": ["Voyage coffee"]
+  },
+  "grandmas-home": {
+    "name": "Grandma's Home, Wangfujing APM",
+    "name_zh": "外婆家（王府井APM店）",
+    "address_zh": "北京市东城区王府井大街138号APM 6层",
+    "city_zh": "北京",
+    "match": ["Grandma's"],
+    "note_en": "Wangfujing APM 6F. Lunch from 10:30. Pickled-cabbage fish (suancai yu) is on the menu in Hangzhou/Shanghai, unconfirmed in Beijing; check Dianping."
+  }
+}

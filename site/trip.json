@@ -1,0 +1,462 @@
+{
+  "trip": {
+    "title": "Beijing & Chongli",
+    "start": "2026-12-07",
+    "end": "2026-12-14",
+    "tz": "Asia/Shanghai"
+  },
+  "tags": {
+    "book": {
+      "label": "จอง",
+      "color": "#EAD1DC"
+    },
+    "food": {
+      "label": "อาหาร",
+      "color": "#F9CB9C"
+    },
+    "cafe": {
+      "label": "Cafe",
+      "color": "#C9DAF8"
+    },
+    "free": {
+      "label": "ไม่ต้องจอง",
+      "color": "#D9EAD3"
+    },
+    "travel": {
+      "label": "เดินทาง",
+      "color": "#D9D2E9"
+    }
+  },
+  "places": {
+    "crystal-orange": {
+      "name": "Crystal Orange Sanlitun Taikoo Li Beijing",
+      "name_zh": "北京三里屯太古里桔子水晶酒店",
+      "address_zh": "北京市朝阳区农展馆南路12号1号楼1层",
+      "city_zh": "北京",
+      "phone": "+86-10-85221688"
+    },
+    "thaiwoo-nanshanli": {
+      "name": "Thaiwoo Town Nanshanli Hotel",
+      "name_zh": "太舞小镇南山里酒店",
+      "address_zh": "河北省张家口市崇礼区四台嘴乡太舞小镇南山里D座",
+      "city_zh": "张家口",
+      "phone": "+86-313-4778300"
+    },
+    "pek": {
+      "name": "Beijing Capital International Airport, Terminal 3",
+      "name_zh": "北京首都国际机场 T3航站楼",
+      "address_zh": "北京市顺义区首都国际机场3号航站楼",
+      "city_zh": "北京"
+    },
+    "qinghe-station": {
+      "name": "Qinghe Railway Station",
+      "name_zh": "清河站",
+      "address_zh": "北京市海淀区清河站",
+      "city_zh": "北京"
+    },
+    "lama-temple": {
+      "name": "Lama Temple",
+      "name_zh": "雍和宫",
+      "address_zh": "北京市东城区雍和宫大街12号",
+      "city_zh": "北京"
+    },
+    "universal-beijing": {
+      "name": "Universal Beijing Resort",
+      "name_zh": "北京环球度假区（北京环球影城）",
+      "address_zh": "北京市通州区北京环球度假区",
+      "city_zh": "北京"
+    },
+    "feidachu": {
+      "name": "Feidachu, Sanlitun Taikoo Li",
+      "name_zh": "费大厨辣椒炒肉（三里屯太古里店）",
+      "address_zh": "北京市朝阳区三里屯路19号三里屯太古里",
+      "city_zh": "北京"
+    },
+    "16mm-cafe": {
+      "name": "16mm Cafe, Nanluoguxiang",
+      "name_zh": "16毫米咖啡",
+      "address_zh": "北京市东城区南锣鼓巷57号",
+      "city_zh": "北京"
+    },
+    "tiananmen-square": {
+      "name": "Tiananmen Square",
+      "name_zh": "天安门广场",
+      "address_zh": "北京市东城区东长安街天安门广场",
+      "city_zh": "北京"
+    },
+    "qianmen-street": {
+      "name": "Qianmen Street",
+      "name_zh": "前门大街",
+      "address_zh": "北京市东城区前门大街",
+      "city_zh": "北京"
+    },
+    "peking-chamber": {
+      "name": "Siji Minfu Roast Duck (Peking Chamber), Forbidden City branch",
+      "name_zh": "四季民福烤鸭店（故宫店）",
+      "address_zh": "北京市东城区南池子大街11号",
+      "city_zh": "北京"
+    },
+    "jindingxuan": {
+      "name": "Jin Ding Xuan, Ditan branch",
+      "name_zh": "金鼎轩（地坛店）",
+      "address_zh": "北京市东城区和平里西街77号",
+      "city_zh": "北京"
+    },
+    "shuiguo-spa": {
+      "name": "Shuiguo Tangquan spa, Sihui",
+      "name_zh": "水裹汤泉（四惠店）",
+      "address_zh": "北京市朝阳区四惠",
+      "city_zh": "北京"
+    },
+    "mutianyu": {
+      "name": "Mutianyu Great Wall",
+      "name_zh": "慕田峪长城",
+      "address_zh": "北京市怀柔区渤海镇慕田峪村",
+      "city_zh": "北京"
+    },
+    "carbo": {
+      "name": "Carbo, Friendship Store back courtyard",
+      "name_zh": "Carbo（友谊商店后院）",
+      "address_zh": "北京市朝阳区建国门外大街17号友谊商店",
+      "city_zh": "北京"
+    },
+    "wangfujing": {
+      "name": "Wangfujing Street",
+      "name_zh": "王府井步行街",
+      "address_zh": "北京市东城区王府井大街",
+      "city_zh": "北京"
+    },
+    "long-time-ago": {
+      "name": "Long Time Ago lamb skewers, 3.3 Mall Sanlitun",
+      "name_zh": "很久以前羊肉串（三里屯3.3店）",
+      "address_zh": "北京市朝阳区三里屯路33号三里屯3.3大厦5层",
+      "city_zh": "北京"
+    },
+    "forbidden-city": {
+      "name": "Forbidden City (Palace Museum)",
+      "name_zh": "故宫博物院",
+      "address_zh": "北京市东城区景山前街4号",
+      "city_zh": "北京"
+    },
+    "fangzhuanchang-69": {
+      "name": "Fangzhuanchang No. 69 Zhajiang Noodles",
+      "name_zh": "方砖厂69号炸酱面",
+      "address_zh": "北京市东城区方砖厂胡同69号",
+      "city_zh": "北京"
+    },
+    "summer-palace": {
+      "name": "Summer Palace",
+      "name_zh": "颐和园",
+      "address_zh": "北京市海淀区新建宫门路19号",
+      "city_zh": "北京"
+    },
+    "hu-teahouse-hotpot": {
+      "name": "Hu Teahouse Hotpot, Sanlitun SOHO",
+      "name_zh": "壶·茶馆火锅（三里屯SOHO店）",
+      "address_zh": "北京市朝阳区工人体育场北路8号三里屯SOHO 1号楼3层",
+      "city_zh": "北京"
+    },
+    "sanlitun-taikoo-li": {
+      "name": "Sanlitun Taikoo Li",
+      "name_zh": "三里屯太古里",
+      "address_zh": "北京市朝阳区三里屯路19号",
+      "city_zh": "北京"
+    },
+    "temple-of-heaven": {
+      "name": "Temple of Heaven Park",
+      "name_zh": "天坛公园",
+      "address_zh": "北京市东城区天坛公园",
+      "city_zh": "北京"
+    },
+    "voyage-coffee": {
+      "name": "Voyage Coffee, Sanlihe Park branch",
+      "name_zh": "Voyage Coffee（三里河公园店）",
+      "address_zh": "北京市东城区三里河公园",
+      "city_zh": "北京"
+    },
+    "grandmas-home": {
+      "name": "Grandma's Home, Wangfujing APM",
+      "name_zh": "外婆家（王府井APM店）",
+      "address_zh": "北京市东城区王府井大街138号APM 6层",
+      "city_zh": "北京"
+    }
+  },
+  "hotels": [
+    {
+      "place": "crystal-orange",
+      "from": "2026-12-07",
+      "to": "2026-12-09"
+    },
+    {
+      "place": "thaiwoo-nanshanli",
+      "from": "2026-12-09",
+      "to": "2026-12-11"
+    },
+    {
+      "place": "crystal-orange",
+      "from": "2026-12-11",
+      "to": "2026-12-14"
+    }
+  ],
+  "days": [
+    {
+      "date": "2026-12-07",
+      "label": "Day 1 - Beijing",
+      "items": [
+        {
+          "time": "07:00",
+          "text": "Land PEK 05:20\n-> hotel, drop bags",
+          "tag": "travel",
+          "place": "crystal-orange",
+          "note": "Taxi PEK -> Sanlitun ~30-50 min. Leave bags at the bell desk."
+        },
+        {
+          "time": "09:00",
+          "text": "Lama Temple",
+          "tag": "book",
+          "place": "lama-temple",
+          "note": "Opens 9:00. Sources conflict on booking; one 2026 source says timed entry released 7 days ahead at midnight, so book to be safe."
+        },
+        {
+          "time": "11:00",
+          "text": "Feidachu (Salitun)",
+          "tag": "food",
+          "place": "feidachu",
+          "note": "Sanlitun Taikoo Li. Lunch from 11:00, queue numbers from ~10:30. Walk-in, long queues."
+        },
+        {
+          "time": "14:00",
+          "text": "16 MM Cafe\n- Cafe ปลาคาร์ฟ",
+          "tag": "cafe",
+          "place": "16mm-cafe",
+          "note": "57 Nanluoguxiang. 10:00-02:00. Goldfish under a glass floor."
+        },
+        {
+          "time": "15:00",
+          "text": "Tian an men",
+          "tag": "book",
+          "place": "tiananmen-square",
+          "note": "Square needs a WeChat mini-program booking (1-7 days ahead), ID type Passport, bring originals. Forbidden City is closed Mondays, so it can't cover entry today."
+        },
+        {
+          "time": "16:00",
+          "text": "Qienmen  street",
+          "tag": "free",
+          "place": "qianmen-street",
+          "note": "At 16:30 take a remote queue number for Peking Chamber: WeChat mini-program 'Siji Minfu' → take a queue number (pai dui qu hao)."
+        },
+        {
+          "time": "19:00",
+          "text": "Peking Chamber",
+          "tag": "food",
+          "place": "peking-chamber",
+          "note": "= Siji Minfu, Forbidden City branch, 11 Nanchizi St (Tiananmen East, L1). 10:30-21:30. Walk-in wait 1-3 hr, use the remote queue."
+        }
+      ]
+    },
+    {
+      "date": "2026-12-08",
+      "label": "Day 2 - Beijing",
+      "items": [
+        {
+          "time": "09:00",
+          "text": "Universal Beijing",
+          "tag": "book",
+          "place": "universal-beijing",
+          "note": "Passport = ticket. Weekday, low crowds. Check 8 Dec hours on universalbeijingresort.com (listed 10:00-20:00 Tue-Fri)."
+        },
+        {
+          "time": "21:00",
+          "text": "JinDingXuan\n(Dimsum)",
+          "tag": "food",
+          "place": "jindingxuan",
+          "note": "Jin Ding Xuan, Ditan branch, 77 Hepingli West St (Yonghegong, L2/L5). 24h. ~40 min taxi from Universal; resort shuttle stops 20:40."
+        }
+      ]
+    },
+    {
+      "date": "2026-12-09",
+      "label": "Day 3 - Beijing -> Chongli",
+      "items": [
+        {
+          "time": "07:00",
+          "text": "Train -> Chongli\n(~08:30 Qinghe)",
+          "tag": "travel",
+          "place": "qinghe-station",
+          "note": "07:30 check out, leave big luggage at hotel. Taxi to Qinghe ~45 min. Train ~1 hr. Book on 12306 / Trip.com."
+        },
+        {
+          "time": "09:00",
+          "text": "Arrive resort\n+ rent gear",
+          "tag": "travel",
+          "place": "thaiwoo-nanshanli",
+          "note": "Resort shuttle from the station. Check in, rental fitting."
+        },
+        {
+          "time": "11:00",
+          "text": "Ski Day",
+          "tag": "book",
+          "note": "Resort + hotel + her lesson not booked yet."
+        }
+      ]
+    },
+    {
+      "date": "2026-12-10",
+      "label": "Day 4 - Chongli",
+      "items": [
+        {
+          "time": "09:00",
+          "text": "Ski Day",
+          "tag": "book",
+          "note": "Book her Thai/English lesson through the resort."
+        }
+      ]
+    },
+    {
+      "date": "2026-12-11",
+      "label": "Day 5 - Chongli -> Beijing",
+      "items": [
+        {
+          "time": "11:00",
+          "text": "Ski Day",
+          "tag": "book",
+          "note": "Return gear and change by ~17:30."
+        },
+        {
+          "time": "18:00",
+          "text": "Train -> Beijing\n(~18:30) -> hotel",
+          "tag": "travel",
+          "place": "crystal-orange",
+          "note": "Arrive Qinghe ~19:45. Taxi to Sanlitun hotel ~40 min, check back in."
+        },
+        {
+          "time": "21:00",
+          "text": "ShuiGuo (Spa, Sauna, Onsen)",
+          "tag": "free",
+          "place": "shuiguo-spa",
+          "note": "Shuiguo Tangquan, Sihui (Sihui East, L1). 24h. ~20 min from Sanlitun. Ticket on Trip.com or at door. Bring passports. Bathing is nude, men and women separate."
+        }
+      ]
+    },
+    {
+      "date": "2026-12-12",
+      "label": "Day 6 - Beijing",
+      "items": [
+        {
+          "time": "07:00",
+          "text": "Car to Mutianyu",
+          "tag": "travel",
+          "place": "mutianyu",
+          "note": "~1.5 hr. Book a round-trip car; taxis refuse one-way from the Great Wall."
+        },
+        {
+          "time": "09:00",
+          "text": "Great Wall\nMutianyu",
+          "tag": "book",
+          "place": "mutianyu",
+          "note": "Tickets up to 15 days ahead, passport. Winter cable car/toboggan 8:30-16:30, can stop in bad weather."
+        },
+        {
+          "time": "13:00",
+          "text": "Carbo (พาสต้า)",
+          "tag": "food",
+          "place": "carbo",
+          "note": "Moved from Sunday. Friendship Store back courtyard, 17 Jianguomenwai (Yong'anli, L1). 11:00-22:00. On the way back to Wangfujing."
+        },
+        {
+          "time": "16:00",
+          "text": "Wangfujin",
+          "tag": "free",
+          "place": "wangfujing"
+        },
+        {
+          "time": "19:00",
+          "text": "Long time Ago\n(grill )",
+          "tag": "food",
+          "place": "long-time-ago",
+          "note": "Henjiu Yiqian lamb skewers, 3.3 Mall 5F, Sanlitun. Opens 17:00. Remote queue on WeChat mini-program 'Henjiu Yiqian'."
+        }
+      ]
+    },
+    {
+      "date": "2026-12-13",
+      "label": "Day 7 - Beijing",
+      "items": [
+        {
+          "time": "08:00",
+          "text": "Forbidden City",
+          "tag": "book",
+          "place": "forbidden-city",
+          "note": "Opens 08:30, last entry 15:30, closed Mondays. Tickets open Sun 6 Dec 20:00 Beijing = 19:00 Thai time; weekend sells out in minutes. Passport."
+        },
+        {
+          "time": "12:00",
+          "text": "Lunch near\nForbidden City",
+          "tag": "food",
+          "place": "fangzhuanchang-69",
+          "note": "Her pick: Fangzhuanchang No. 69 zhajiang noodles (Michelin Bib, 10-15 min taxi, queue; this is the driver card) / Chengdu Zhujingban Sichuan (5-8 min walk from north gate) / Heyan Roubing Beijing meat pie (east gate)."
+        },
+        {
+          "time": "13:00",
+          "text": "Summer palace",
+          "tag": "book",
+          "place": "summer-palace",
+          "note": "Taxi ~50 min. Frozen Kunming Lake, stay to sunset ~16:50. Inner sites last entry 16:30."
+        },
+        {
+          "time": "18:00",
+          "text": "Hu tea house\nHotpot",
+          "tag": "food",
+          "place": "hu-teahouse-hotpot",
+          "note": "Hu Teahouse Hotpot, Sanlitun SOHO Bldg 1, 3F. 24h, walk in. ~¥128/person. ~1 hr taxi from Summer Palace."
+        },
+        {
+          "time": "20:00",
+          "text": "Salitun",
+          "tag": "free",
+          "place": "sanlitun-taikoo-li"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-14",
+      "label": "Day 8 - Beijing",
+      "items": [
+        {
+          "time": "08:00",
+          "text": "Check out",
+          "tag": "travel",
+          "note": "Leave bags at the bell desk."
+        },
+        {
+          "time": "09:00",
+          "text": "Temple of Haven\n(park only)",
+          "tag": "free",
+          "place": "temple-of-heaven",
+          "note": "Mondays: park open, halls closed (Hall of Prayer, Echo Wall, Circular Altar)."
+        },
+        {
+          "time": "10:00",
+          "text": "Voyage coffee",
+          "tag": "cafe",
+          "place": "voyage-coffee",
+          "note": "Sanlihe Park branch, 2 km from Temple of Heaven. Opens 10:00. No Sanlitun branch."
+        },
+        {
+          "time": "11:00",
+          "text": "Grandma's  Home\n(ปลาต้มผักกาดดอง)",
+          "tag": "food",
+          "place": "grandmas-home",
+          "note": "Wangfujing APM 6F. Lunch from 10:30. Pickled-cabbage fish (suancai yu) is on the menu in Hangzhou/Shanghai, unconfirmed in Beijing; check Dianping."
+        },
+        {
+          "time": "12:00",
+          "text": "Hotel, pick up bags\n-> Airport\nFlight TG 17:05",
+          "tag": "travel",
+          "place": "pek",
+          "note": "12:30 hotel, 13:00 leave for PEK."
+        }
+      ]
+    }
+  ]
+}
