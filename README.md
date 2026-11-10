@@ -1,7 +1,7 @@
 # Beijing 2026 trip site
 
 Offline phone web app for the Beijing + Chongli trip, 7–14 Dec 2026. One trip only.
-Live at `https://captainjry.github.io/bj26-x7k2/` (repo `captainjry/bj26-x7k2`, not created yet).
+Live at `https://captainjry.github.io/bj26-x7k2/` (public repo `captainjry/bj26-x7k2`, published by `.github/workflows/pages.yml` on every push to `main`).
 
 ## Update the site after the sheet changes
 
