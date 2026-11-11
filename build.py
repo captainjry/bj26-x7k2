@@ -21,6 +21,17 @@ HOTELS = [
     {'place': 'thaiwoo-nanshanli', 'from': '2026-12-09', 'to': '2026-12-11'},
     {'place': 'crystal-orange', 'from': '2026-12-11', 'to': '2026-12-14'},
 ]
+# Cover photo per day (Wikimedia Commons; credit fields shown on the Credits screen).
+COVERS = {
+    "2026-12-07": {"file": "img/cover-2026-12-07.webp", "w": 960, "h": 1200, "thumb": "img/cover-2026-12-07-sq.webp", "alt": "Tiananmen Gate at dusk", "title": "File:天安门夜景.jpg", "author": "Charlie fong冯成", "license": "Public domain", "license_url": "https://commons.wikimedia.org/wiki/File:%E5%A4%A9%E5%AE%89%E9%97%A8%E5%A4%9C%E6%99%AF.jpg", "source": "https://commons.wikimedia.org/wiki/File:%E5%A4%A9%E5%AE%89%E9%97%A8%E5%A4%9C%E6%99%AF.jpg"},
+    "2026-12-08": {"file": "img/cover-2026-12-08.webp", "w": 960, "h": 1200, "thumb": "img/cover-2026-12-08-sq.webp", "alt": "Universal globe at Universal Beijing Resort", "title": "File:Universal Studios Beijing globe square (20210907121340).jpg", "author": "N509FZ", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0", "source": "https://commons.wikimedia.org/wiki/File:Universal_Studios_Beijing_globe_square_(20210907121340).jpg"},
+    "2026-12-09": {"file": "img/cover-2026-12-09.webp", "w": 960, "h": 1200, "thumb": "img/cover-2026-12-09-sq.webp", "alt": "Fuxing high-speed train on the Beijing-Zhangjiakou line in winter", "title": "File:CR400BF-G-5172 at Chengjiayao (20220110134038).jpg", "author": "N509FZ", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0", "source": "https://commons.wikimedia.org/wiki/File:CR400BF-G-5172_at_Chengjiayao_(20220110134038).jpg"},
+    "2026-12-10": {"file": "img/cover-2026-12-10.webp", "w": 960, "h": 1200, "thumb": "img/cover-2026-12-10-sq.webp", "alt": "Chairlift over snowy slopes at Wanlong ski resort, Chongli", "title": "File:万龙雪场 - panoramio.jpg", "author": "黑夜有灯", "license": "CC BY 3.0", "license_url": "https://creativecommons.org/licenses/by/3.0", "source": "https://commons.wikimedia.org/wiki/File:%E4%B8%87%E9%BE%99%E9%9B%AA%E5%9C%BA_-_panoramio.jpg"},
+    "2026-12-11": {"file": "img/cover-2026-12-11.webp", "w": 960, "h": 1200, "thumb": "img/cover-2026-12-11-sq.webp", "alt": "Snowboarder in deep powder", "title": "File:Ebbetts Pass Scenic Byway - Carving through Powder - NARA - 7718123.jpg", "author": "Unknown author (US National Archives)", "license": "Public domain", "license_url": "https://commons.wikimedia.org/wiki/File:Ebbetts_Pass_Scenic_Byway_-_Carving_through_Powder_-_NARA_-_7718123.jpg", "source": "https://commons.wikimedia.org/wiki/File:Ebbetts_Pass_Scenic_Byway_-_Carving_through_Powder_-_NARA_-_7718123.jpg", "standin": "Ebbetts Pass, USA, not Chongli"},
+    "2026-12-12": {"file": "img/cover-2026-12-12.webp", "w": 960, "h": 1200, "thumb": "img/cover-2026-12-12-sq.webp", "alt": "The Great Wall under snow", "title": "File:Badaling Great Wall (South) in snow 20261108 02.jpg", "author": "Steven Sun", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0", "source": "https://commons.wikimedia.org/wiki/File:Badaling_Great_Wall_(South)_in_snow_20261108_02.jpg", "standin": "Badaling section, not Mutianyu"},
+    "2026-12-13": {"file": "img/cover-2026-12-13.webp", "w": 960, "h": 1200, "thumb": "img/cover-2026-12-13-sq.webp", "alt": "The Forbidden City under snow, seen from Jingshan", "title": "File:Forbidden City after snow (20200106114634).jpg", "author": "N509FZ", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0", "source": "https://commons.wikimedia.org/wiki/File:Forbidden_City_after_snow_(20200106114634).jpg"},
+    "2026-12-14": {"file": "img/cover-2026-12-14.webp", "w": 960, "h": 1200, "thumb": "img/cover-2026-12-14-sq.webp", "alt": "Hall of Prayer at the Temple of Heaven after snow", "title": "File:·˙·ChinaUli2010·.· Beijing - Snow at the Temple of Heaven - panoramio.jpg", "author": "·˙·ChinaUli2010·.·", "license": "CC BY 3.0", "license_url": "https://creativecommons.org/licenses/by/3.0", "source": "https://commons.wikimedia.org/wiki/File:%C2%B7%CB%99%C2%B7ChinaUli2010%C2%B7.%C2%B7_Beijing_-_Snow_at_the_Temple_of_Heaven_-_panoramio.jpg"},
+}
 LEGEND_TAGS = {'จอง': 'book', 'อาหาร': 'food', 'Cafe': 'cafe', 'ไม่ต้องจอง': 'free', 'เดินทาง': 'travel'}
 NO_LOCATION = {'ski day', 'check out'}
 CJK = re.compile(r'[\u3000-\u303f\u3400-\u9fff\uf900-\ufaff\uff00-\uffef]')
@@ -138,7 +149,12 @@ def build(xlsx_path):
                 item['note'] = note
 
             items.append(item)
-        days.append({'date': date, 'label': label, 'items': items})
+        day = {'date': date, 'label': label, 'items': items}
+        if date in COVERS:
+            day['cover'] = COVERS[date]
+        else:
+            print(f'WARN {date}: no cover photo in COVERS')
+        days.append(day)
 
     if unknown_empty:
         print(f'INFO {unknown_empty} empty grid cells have a fill matching no legend colour (ignored)')

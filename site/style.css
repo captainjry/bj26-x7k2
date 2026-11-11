@@ -1,17 +1,22 @@
+/* Winter editorial: paper + ink + cinnabar, photo covers, system serif display type. */
 :root {
-  --bg: #eef6fc;
-  --surface: #ffffff;
-  --text: #0b2236;
-  --muted: #46586b;
-  --border: #c5dcec;
-  --primary: #0369a1;
+  --bg: #f4efe7;
+  --surface: #fffdf9;
+  --text: #1c1915;
+  --muted: #5b5248;
+  --border: #e0d6c8;
+  --primary: #a3211a;
   --on-primary: #ffffff;
-  --accent: #c2410c;
-  --accent-soft: #fff1e8;
-  --next-soft: #e6f3fb;
-  --shadow: 0 1px 2px rgb(11 34 54 / 0.06), 0 4px 16px rgb(11 34 54 / 0.06);
-  --radius: 16px;
+  --accent: #a3211a;
+  --accent-soft: #fbe9e4;
+  --next-soft: #efe7db;
+  --ink: #1c1915;
+  --on-ink: #fffdf9;
+  --shadow: 0 1px 2px rgb(40 24 10 / 0.06), 0 8px 24px rgb(40 24 10 / 0.08);
+  --radius: 18px;
   --font: system-ui, -apple-system, "SF Pro Text", "Segoe UI", Roboto, "Noto Sans Thai", "Sukhumvit Set", "Leelawadee UI", sans-serif;
+  /* System serifs only: web fonts would break offline and their CDNs are blocked in China. Thai falls back to the system Thai face. */
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, "Noto Serif", "Noto Serif Thai", "Droid Serif", serif;
   --font-zh: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Noto Sans CJK SC", "Source Han Sans SC", "Microsoft YaHei", sans-serif;
   --tap: 150ms ease-out;
   --nav-h: 64px;
@@ -19,17 +24,19 @@
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #070f1d;
-    --surface: #0f1c30;
-    --text: #edf5ff;
-    --muted: #a9bad0;
-    --border: #253a56;
-    --primary: #5cc8fa;
-    --on-primary: #04121f;
-    --accent: #fb923c;
-    --accent-soft: #2a1a10;
-    --next-soft: #0d2a40;
-    --shadow: none;
+    --bg: #12100e;
+    --surface: #1d1a16;
+    --text: #f4eee6;
+    --muted: #b9ae9f;
+    --border: #3a332b;
+    --primary: #ff8f7f;
+    --on-primary: #230805;
+    --accent: #ff8f7f;
+    --accent-soft: #33160f;
+    --next-soft: #27221c;
+    --ink: #f4eee6;
+    --on-ink: #12100e;
+    --shadow: 0 8px 24px rgb(0 0 0 / 0.35);
   }
 }
 
@@ -45,43 +52,71 @@ body {
 }
 svg { width: 22px; height: 22px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 h1, h2, p { margin: 0; }
+img { display: block; max-width: 100%; }
 :focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
 
-/* ---------- hero: night-sky aurora in both themes, snow canvas on top ---------- */
+/* ---------- cover: photo, then snow canvas, then text on its own scrim ---------- */
 #hero {
   position: relative;
   overflow: hidden;
   color: #fff;
-  padding: calc(env(safe-area-inset-top) + 28px) calc(env(safe-area-inset-right) + 20px) 40px calc(env(safe-area-inset-left) + 20px);
-  min-height: 210px;
+  min-height: 46svh;
   display: flex;
   align-items: flex-end;
+  /* shown while the photo loads, and as the whole cover on screens without one */
   background:
-    radial-gradient(120% 70% at 85% 0%, rgb(56 189 248 / 0.45), transparent 60%),
-    radial-gradient(90% 60% at 10% 30%, rgb(45 212 191 / 0.28), transparent 65%),
-    radial-gradient(80% 50% at 50% 110%, rgb(129 140 248 / 0.35), transparent 70%),
-    linear-gradient(180deg, #0a1530 0%, #10284d 60%, #17406b 100%);
+    radial-gradient(120% 70% at 85% 0%, rgb(163 33 26 / 0.45), transparent 60%),
+    radial-gradient(90% 60% at 10% 30%, rgb(56 120 180 / 0.25), transparent 65%),
+    linear-gradient(180deg, #1a1411 0%, #2a1f19 60%, #3a2a20 100%);
 }
-#hero::after { /* soft snow-bank edge into the page */
-  content: ""; position: absolute; inset: auto 0 -1px 0; height: 24px;
+#hero[data-size="tall"] { min-height: 58svh; }
+#hero[data-size="short"] { min-height: 220px; }
+#cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+#cover:not([src]) { display: none; }
+#hero::before { /* keeps the status bar legible on bright skies */
+  content: ""; position: absolute; inset: 0 0 auto 0; height: calc(env(safe-area-inset-top) + 88px); z-index: 1;
+  background: linear-gradient(180deg, rgb(12 9 7 / 0.45), transparent);
+}
+#hero::after { /* paper edge the content sheet grows from */
+  content: ""; position: absolute; inset: auto 0 -1px 0; height: 24px; z-index: 3;
   background: var(--bg); border-radius: 24px 24px 0 0;
 }
-.snow { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0; transition: opacity 1.2s ease; }
+.snow { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0; transition: opacity 1.2s ease; z-index: 1; }
 .snow.on { opacity: 1; }
-#hero-text { position: relative; z-index: 1; text-shadow: 0 1px 12px rgb(5 12 30 / 0.6); }
-#hero .eyebrow { color: #cfe9ff; }
-#hero h1 { font-size: clamp(1.75rem, 7.5vw, 2.25rem); line-height: 1.15; font-weight: 750; letter-spacing: -0.01em; margin: 4px 0 6px; text-wrap: balance; }
-#hero .sub { color: #dcebfa; font-size: 1rem; }
+/* The scrim belongs to the text block, so text always sits on >= 62% black whatever the photo:
+   on pure white pixels that still gives white text about 5.6:1. */
+#hero-text {
+  position: relative; z-index: 2; width: 100%;
+  padding: 80px calc(env(safe-area-inset-right) + 20px) 48px calc(env(safe-area-inset-left) + 20px);
+  background: linear-gradient(180deg, rgb(12 9 7 / 0) 0, rgb(12 9 7 / 0.62) 80px, rgb(12 9 7 / 0.86) 100%);
+  text-shadow: 0 1px 10px rgb(0 0 0 / 0.5);
+}
+#hero .eyebrow { color: #f6e9da; }
+#hero h1 {
+  font-family: var(--serif); font-weight: 600;
+  font-size: clamp(2.5rem, 12.5vw, 3.75rem); line-height: 1.02; letter-spacing: -0.015em;
+  margin: 8px 0 10px; text-wrap: balance;
+}
+#hero .sub { color: #f1e6d8; font-size: 1.0625rem; }
 
-.eyebrow { font-size: 0.8125rem; font-weight: 650; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.eyebrow {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+}
+.eyebrow svg { width: 16px; height: 16px; }
 
 /* ---------- layout ---------- */
 #view {
-  padding: 4px calc(env(safe-area-inset-right) + 16px) calc(var(--nav-h) + env(safe-area-inset-bottom) + 32px) calc(env(safe-area-inset-left) + 16px);
+  position: relative; z-index: 4;
+  padding: 0 calc(env(safe-area-inset-right) + 16px) calc(var(--nav-h) + env(safe-area-inset-bottom) + 32px) calc(env(safe-area-inset-left) + 16px);
   max-width: 640px;
   margin: 0 auto;
 }
-.section { font-size: 1.25rem; font-weight: 700; margin: 28px 4px 12px; }
+.section {
+  font-family: var(--serif); font-size: 1.75rem; font-weight: 600; line-height: 1.15; letter-spacing: -0.01em;
+  margin: 32px 4px 16px;
+}
+.section::before { content: ""; display: block; width: 32px; height: 3px; border-radius: 2px; background: var(--primary); margin-bottom: 12px; }
 .empty { padding: 40px 0; text-align: center; color: var(--muted); }
 
 /* ---------- buttons ---------- */
@@ -90,7 +125,7 @@ h1, h2, p { margin: 0; }
   min-height: 48px; padding: 0 16px;
   border: 1.5px solid var(--border); border-radius: 12px;
   background: var(--surface); color: var(--primary);
-  font: 600 1rem/1 var(--font); text-decoration: none; cursor: pointer;
+  font: 650 1rem/1 var(--font); text-decoration: none; cursor: pointer;
   transition: background-color var(--tap), opacity var(--tap);
 }
 .btn:active { opacity: 0.7; background: var(--next-soft); }
@@ -107,56 +142,65 @@ h1, h2, p { margin: 0; }
   position: relative; margin-top: 12px; padding: 16px 56px 16px 16px;
   background: var(--next-soft); border: 1.5px solid var(--border); border-radius: var(--radius);
 }
-.install h2 { font-size: 1.0625rem; margin-bottom: 4px; }
+.install h2 { font-family: var(--serif); font-size: 1.25rem; margin-bottom: 4px; }
 .install p + p { margin-top: 8px; }
 
 /* ---------- hotel ---------- */
 .hotel {
-  margin-top: 12px; padding: 16px; display: grid; gap: 10px;
-  background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow);
+  position: relative; margin-top: 4px; padding: 14px; display: grid; gap: 12px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow);
 }
-.hotel-head { display: flex; gap: 12px; align-items: center; color: var(--primary); }
-.hotel-head svg { width: 28px; height: 28px; }
-.hotel h2 { font-size: 1.125rem; color: var(--text); line-height: 1.3; }
+.hotel + .install { margin-top: 12px; }
+.hotel-head { display: flex; gap: 14px; align-items: center; }
+.hotel-head > svg { width: 28px; height: 28px; color: var(--primary); }
+.hotel-pic { width: 76px; height: 76px; border-radius: 12px; object-fit: cover; flex: none; background: var(--next-soft); }
+.hotel .eyebrow { color: var(--primary); }
+.hotel h2 { font-family: var(--serif); font-size: 1.3125rem; font-weight: 600; color: var(--text); line-height: 1.2; margin-top: 2px; }
 
 /* ---------- day strip: 8 columns, never scrolls sideways ---------- */
-.strip { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; margin-top: 8px; }
+.strip { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; margin: 4px 0 16px; }
 .strip a {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  min-height: 56px; border-radius: 12px; text-decoration: none; color: var(--text);
-  background: var(--surface); border: 1.5px solid var(--border);
+  min-height: 58px; border-radius: 12px; text-decoration: none; color: var(--text);
+  background: var(--surface); border: 1px solid var(--border);
   transition: background-color var(--tap);
 }
+.strip a:active { background: var(--next-soft); }
 .strip small { font-size: 0.75rem; color: var(--muted); line-height: 1.2; }
-.strip b { font-size: 1.125rem; line-height: 1.2; font-variant-numeric: tabular-nums; }
-.strip a[aria-current="true"] { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
+.strip b { font-family: var(--serif); font-size: 1.25rem; font-weight: 600; line-height: 1.2; font-variant-numeric: tabular-nums lining-nums; }
+.strip a[aria-current="true"] { background: var(--ink); border-color: var(--ink); color: var(--on-ink); }
 .strip a[aria-current="true"] small { color: inherit; opacity: 0.85; }
 
 /* ---------- timeline ---------- */
 .timeline { list-style: none; margin: 0; padding: 0; position: relative; }
 .timeline::before { content: ""; position: absolute; left: 58px; top: 8px; bottom: 8px; width: 2px; background: var(--border); }
-.item { display: grid; grid-template-columns: 50px 1fr; gap: 18px; padding-bottom: 12px; position: relative; }
+.item { display: grid; grid-template-columns: 50px 1fr; gap: 18px; padding-bottom: 16px; position: relative; }
 .item::before { /* dot on the line */
   content: ""; position: absolute; left: 53px; top: 18px; width: 12px; height: 12px; border-radius: 50%;
-  background: var(--surface); border: 2px solid var(--primary);
+  background: var(--bg); border: 2px solid var(--muted);
 }
-.time { padding-top: 12px; text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; font-size: 0.9375rem; color: var(--muted); }
+.time {
+  padding-top: 12px; text-align: right; font-family: var(--serif); font-weight: 600; font-size: 1.0625rem;
+  font-variant-numeric: tabular-nums lining-nums; color: var(--muted);
+}
 .card {
-  min-width: 0; padding: 12px 14px; display: grid; gap: 8px;
-  background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow);
+  min-width: 0; overflow: hidden;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow);
 }
+.thumb { width: 100%; height: auto; aspect-ratio: 5 / 2; object-fit: cover; background: var(--next-soft); }
+.card-body { padding: 12px 14px 14px; display: grid; gap: 8px; }
 .badges { display: flex; flex-wrap: wrap; gap: 6px; }
 .badges:not(:has(*:not(:empty))) { display: none; }
 .now-badge:empty { display: none; }
-.now-badge { font-size: 0.8125rem; font-weight: 750; padding: 2px 10px; border-radius: 99px; background: var(--accent); color: #fff; }
+.now-badge { font-size: 0.8125rem; font-weight: 750; letter-spacing: 0.04em; text-transform: uppercase; padding: 2px 10px; border-radius: 99px; background: var(--accent); color: var(--on-primary); }
 .tag {
   display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px 2px 8px; border-radius: 99px;
   font-size: 0.875rem; font-weight: 600; background: var(--tag); color: #14202c; /* sheet fills are pastel: dark text in both themes */
 }
 .tag i { width: 8px; height: 8px; border-radius: 50%; background: color-mix(in srgb, var(--tag) 40%, #14202c); }
-.text { white-space: pre-line; overflow-wrap: anywhere; font-size: 1.0625rem; line-height: 1.5; }
+.text { white-space: pre-line; overflow-wrap: anywhere; font-family: var(--serif); font-size: 1.25rem; font-weight: 600; line-height: 1.3; }
 details { color: var(--muted); }
-summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; font-weight: 600; color: var(--primary); list-style: none; }
+summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; font-weight: 650; color: var(--primary); list-style: none; }
 summary::-webkit-details-marker { display: none; }
 summary::before { content: "+"; width: 1.25em; font-weight: 700; }
 details[open] summary::before { content: "−"; }
@@ -167,11 +211,28 @@ details p { white-space: pre-line; overflow-wrap: anywhere; color: var(--text); 
 .hotel-actions .primary { flex-grow: 3; }
 .card details { margin-top: -6px; }
 
-.item.now .card { border-color: var(--accent); background: var(--accent-soft); }
+.item.now .card { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent), var(--shadow); }
+.item.now .card-body { background: var(--accent-soft); }
 .item.now::before { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 30%, transparent); }
 .item.now .time { color: var(--accent); }
-.item.next .card { border-color: var(--primary); }
-.item.next .now-badge { background: var(--primary); color: var(--on-primary); }
+.item.next .card { border-color: var(--ink); }
+.item.next::before { border-color: var(--ink); }
+.item.next .now-badge { background: var(--ink); color: var(--on-ink); }
+
+/* ---------- credits ---------- */
+.credits-link { margin: 24px 4px 0; text-align: center; }
+.credits-link a, .credit a { color: var(--primary); font-weight: 600; }
+.credits-link a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; }
+.credits-intro { margin: 8px 4px 16px; color: var(--muted); }
+.credits { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.credit { display: grid; grid-template-columns: 64px 1fr; gap: 12px; align-items: start; padding: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; }
+.credit img { width: 64px; height: 64px; border-radius: 10px; object-fit: cover; background: var(--next-soft); }
+.credit div { min-width: 0; }
+.credit-use { font-weight: 700; }
+.standin { display: block; font-weight: 500; font-size: 0.9375rem; color: var(--muted); }
+.credit-by { color: var(--muted); font-size: 0.9375rem; overflow-wrap: anywhere; }
+.credit-by a { display: inline-block; padding: 2px 0; }
+.credit-src { display: inline-block; font-size: 0.875rem; overflow-wrap: anywhere; padding: 4px 0; }
 
 /* ---------- bottom tabs ---------- */
 #tabs {
@@ -189,7 +250,7 @@ details p { white-space: pre-line; overflow-wrap: anywhere; color: var(--text); 
 #tabs a[aria-current="true"] { color: var(--primary); }
 
 #update { position: fixed; left: 16px; right: 16px; bottom: calc(var(--nav-h) + env(safe-area-inset-bottom) + 12px); z-index: 11; }
-#update button { width: 100%; min-height: 52px; border: 0; border-radius: 14px; background: var(--accent); color: #fff; font: 700 1rem var(--font); box-shadow: 0 6px 24px rgb(0 0 0 / 0.25); cursor: pointer; }
+#update button { width: 100%; min-height: 52px; border: 0; border-radius: 14px; background: var(--ink); color: var(--on-ink); font: 700 1rem var(--font); box-shadow: 0 6px 24px rgb(0 0 0 / 0.25); cursor: pointer; }
 
 /* ---------- show to driver: always black on white, arm's-length size ---------- */
 #driver {
@@ -209,7 +270,7 @@ details p { white-space: pre-line; overflow-wrap: anywhere; color: var(--text); 
 .d-close { font-size: 0.875rem; color: #555; }
 
 @media (orientation: landscape) and (max-height: 500px) {
-  #hero { min-height: 140px; padding-bottom: 32px; }
+  #hero, #hero[data-size="tall"] { min-height: 70svh; }
   .d-name { font-size: clamp(2.5rem, 9vw, 4.5rem); }
 }
 @media (prefers-reduced-motion: reduce) {

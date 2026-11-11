@@ -15,7 +15,9 @@ Live at `https://captainjry.github.io/bj26-x7k2/` (public repo `captainjry/bj26-
 | File | Role |
 |------|------|
 | `build.py` | xlsx tab `A - as planned` → `site/trip.json` |
-| `places.json` | Hand-curated: Chinese name + address per place, English note text. Keyed by place id. |
+| `places.json` | Hand-curated: Chinese name + address per place, English note text, `photo`. Keyed by place id. |
+| `build.py` `COVERS` | Cover photo per trip date, copied into `days[].cover`. |
+| `site/img/` | Processed photos referenced by `photo.file` / `photo.thumb`. |
 | `site/` | The published app (GitHub Pages root). `trip.json` is generated, never hand-edited. |
 
 ## Decisions (2026-11-11)
@@ -25,7 +27,10 @@ Live at `https://captainjry.github.io/bj26-x7k2/` (public repo `captainjry/bj26-
 - UI labels English. Her cell text shown as she wrote it (Thai/English mix). Chinese appears ONLY on the "Show to driver" card (large name + address for taxi drivers). The users cannot read Chinese.
 - Before 7 Dec the Today screen shows "Trip starts in N days" + Day 1. During the trip it auto-picks the day by Beijing date (Asia/Shanghai).
 - Public link, `<meta name="robots" content="noindex">`, no booking refs, no passport data, no Trip.com email.
-- Three.js snow scene: vendored locally (offline), paused when hidden, off under `prefers-reduced-motion`.
+- Three.js snow scene: vendored locally (offline), paused when hidden, off under `prefers-reduced-motion`. Falls over the day's cover photo.
+- Look (2026-11-11 v2): winter editorial. Full-bleed cover photo per day, a photo banner per stop, paper/ink/cinnabar palette, system serif headings (no web fonts: offline, and font CDNs are blocked in China). Hero text sits on its own >= 62% black scrim so it reads on any photo.
+- Photos: Wikimedia Commons only (CC0 / public domain / CC BY / CC BY-SA), credited on the `#credits` screen. Restaurants and cafes with no free venue photo use a photo of their dish or category, marked `standin`. Stops at the same place back to back show its photo once.
+- Images live in `site/img/` (WebP q70: stop thumbs 480×320, covers 960×1200 portrait plus a 160×160 square for the credits list), all precached by `site/sw.js` (`IMAGES`, kept equal to what `trip.json` references by `test_build.py`).
 - First screen shows install steps: iPhone Share → Add to Home Screen; Samsung menu → Add to home screen. Open once online before flying.
 
 ## `site/trip.json` schema
@@ -64,5 +69,9 @@ Live at `https://captainjry.github.io/bj26-x7k2/` (public repo `captainjry/bj26-
 - `place` = id into `places`; absent for items with no location (e.g. "Ski Day", "Check out").
 - `tag` = one of the `tags` keys, from the cell fill colour matched against the legend cells; absent if unfilled.
 - `places.<id>.phone` = optional, hotels only (e.g. `"+86-10-85221688"`).
+- `places.<id>.photo` and `days[].cover` = photo object, copied as-is from `places.json` / `COVERS`:
+  `{ "file": "img/lama-temple.webp", "w": 480, "h": 320, "title": "File:….jpg", "author": "xiquinhosilva", "license": "CC BY 2.0", "license_url": "https://creativecommons.org/licenses/by/2.0", "source": "https://commons.wikimedia.org/wiki/File:…" }`.
+  Covers add `"thumb"` (square for the credits list) and `"alt"`. `"standin"` (optional) says what the photo shows when it is not the place itself, e.g. `"Peking duck, the dish"`.
+  To change a photo: put the new WebP in `site/img/`, edit the object, add the path to `IMAGES` in `site/sw.js`, re-run `build.py` and `test_build.py`.
 - An item's `place` is where a taxi takes you: travel items point at their destination (e.g. "Land PEK -> hotel" → `crystal-orange`, "Hotel ... -> Airport" → `pek`).
 - `places.json` adds `match` (case/whitespace-insensitive substrings of cell text; the longest hit wins) and `note_en` (replaces the cell note of items at that place). Neither is copied into `trip.json`; places no cell uses are left out.

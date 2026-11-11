@@ -34,6 +34,23 @@ assert [h['place'] for h in trip['hotels']] == ['crystal-orange', 'thaiwoo-nansh
 for hotel in trip['hotels']:
     assert trip['places'][hotel['place']]['phone'], hotel
 
+# Every referenced image ships in site/ and carries the credit CC BY / BY-SA require.
+photos = [p['photo'] for p in trip['places'].values() if 'photo' in p] + [d['cover'] for d in trip['days']]
+assert len(photos) == len(trip['places']) + len(trip['days']), 'a place or day has no photo'
+for photo in photos:
+    for key in ('file', 'thumb'):
+        if key in photo:
+            assert (HERE / 'site' / photo[key]).is_file(), photo[key]
+    assert photo['w'] > 0 and photo['h'] > 0, photo['file']
+    assert photo['author'] and photo['license'] and photo['license_url'], photo['file']
+    assert photo['source'].startswith('https://commons.wikimedia.org/wiki/File:'), photo['file']
+    assert re.match(r'(CC0|Public domain|CC BY(-SA)? [\d.]+)', photo['license']), photo['license']
+for day in trip['days']:
+    assert day['cover']['alt'], day['date']
+precached = set(re.findall(r"'(img/[^']+)'", (HERE / 'site' / 'sw.js').read_text(encoding='utf-8')))
+referenced = {photo[k] for photo in photos for k in ('file', 'thumb') if k in photo}
+assert precached == referenced, ('sw.js IMAGES out of sync', sorted(precached ^ referenced))
+
 text = json.dumps(trip)
 for secret in ('@', 'passport no', 'booking ref'):
     assert secret not in text.lower(), secret
