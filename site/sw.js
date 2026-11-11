@@ -1,5 +1,5 @@
 // Bump APP_VERSION on every deploy → new shell cache → page shows "Update available".
-const APP_VERSION = '2';
+const APP_VERSION = '3';
 // Every photo trip.json references (build.py output); offline means all of them, not just the ones viewed.
 const IMAGES = [
   'img/16mm-cafe.webp', 'img/carbo.webp', 'img/cover-2026-12-07-sq.webp',
@@ -18,7 +18,7 @@ const IMAGES = [
   'img/voyage-coffee.webp', 'img/wangfujing.webp',
 ];
 const SHELL = `bj26-shell-${APP_VERSION}`;
-const FILES = ['./', 'index.html', 'style.css', 'app.js', 'logic.js', 'snow.js', 'trip.json', 'manifest.webmanifest',
+const FILES = ['./', 'fonts/NotoSansThai-400-700-latin-ext.woff2', 'fonts/NotoSansThai-400-700-latin.woff2', 'fonts/NotoSansThai-400-700-thai.woff2', 'fonts/Prompt-600-latin-ext.woff2', 'fonts/Prompt-600-latin.woff2', 'fonts/Prompt-600-thai.woff2', 'fonts/Prompt-700-latin-ext.woff2', 'fonts/Prompt-700-latin.woff2', 'fonts/Prompt-700-thai.woff2', 'index.html', 'style.css', 'app.js', 'logic.js', 'snow.js', 'trip.json', 'manifest.webmanifest',
   'vendor/three.module.min.js', 'icons/icon-192.png', 'icons/icon-512.png', ...IMAGES];
 
 // No skipWaiting here: a new version waits until the user taps the update bar.
