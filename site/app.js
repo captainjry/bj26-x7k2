@@ -352,7 +352,9 @@ function openDriver(placeId) {
     <p class="d-name" lang="zh-Hans">${esc(p.name_zh)}</p>
     <p class="d-addr" lang="zh-Hans">${esc(p.address_zh)}</p>
     ${phone}
-    <p class="d-en">${esc(p.name)}</p>
+    <p class="d-en"><span class="d-en-label">What this says</span>
+      “${hotel ? 'Please take me back to my hotel' : 'Please take me here'}”<br>
+      <b>${esc(p.name)}</b><br>${esc(p.address_en || '')}</p>
     <button class="d-copy" data-copy="${esc(`${p.name_zh}\n${p.address_zh}`)}">${svg('copy')}<span>Copy Chinese for DiDi / Amap</span></button>
     <p class="d-close">Tap anywhere else to close</p>
   </div>`;

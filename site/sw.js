@@ -1,5 +1,5 @@
 // Bump APP_VERSION on every deploy → new shell cache → page shows "Update available".
-const APP_VERSION = '10';
+const APP_VERSION = '11';
 // Every photo trip.json references (build.py output); offline means all of them, not just the ones viewed.
 const IMAGES = [
   'img/16mm-cafe.webp', 'img/carbo.webp', 'img/cover-2026-12-07-sq.webp',
