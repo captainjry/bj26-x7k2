@@ -431,8 +431,10 @@ function gondola(ctx) {
       steamGeo.attributes.position.needsUpdate = true;
     },
     shot(t, narrow) {
-      const back = narrow ? 1.35 : 1;
-      return { pos: POOL.clone().add(V(-6 * back + Math.sin(t * 0.08) * 2, 6 * back, 13 * back)), look: V(14, POOL.y + 14, 0) };
+      const sway = Math.sin(t * 0.08) * 2;
+      // phone: the title panel covers the lower half, so look down past the pool and keep it high in frame
+      if (narrow) return { pos: POOL.clone().add(V(-7 + sway, 12, 20)), look: POOL.clone().add(V(4, -10, -20)) };
+      return { pos: POOL.clone().add(V(-6 + sway, 6, 13)), look: V(14, POOL.y + 14, 0) };
     },
   };
 }
@@ -491,25 +493,70 @@ function wall(ctx) {
 }
 
 // ---------- 13 Dec: golden palace roofs in snow, then a frozen lake at sunset with the long bridge ----------
-function hipRoof(w, d, h, color) {
-  const g = new CylinderGeometry(0.42, 1, 1, 4, 1);
-  g.rotateY(PI / 4);
-  g.scale(w / 1.414, h, d / 1.414);
-  g.translate(0, h / 2, 0);
-  return new Mesh(g, std(color, { metalness: 0.25, roughness: 0.6 }));
+// Swept hip roof: concave slopes, corners curling up at the eaves, a ridge along the long side.
+// Non-indexed so flat shading and per-face colour hold: gold eaves, snow on the upper slopes.
+function sweptRoof(w, d, h) {
+  // built here, not at module level: world.js switches colour management off only after this module loads
+  const GOLD = new Color(0xe8972a), SNOWY = new Color(0xeef3fa), EAVE = new Color(0x5a3a1c);
+  const K = 5, rx = w >= d ? Math.max(0.15, (w - d) / w) : 0.04, rz = w >= d ? 0.04 : Math.max(0.15, (d - w) / d);
+  const ring = (k) => {
+    const u = k / K, f = 0.5 * (1 - (1 - u) ** 2) + 0.5 * u; // flat at the eave, steep near the ridge
+    const ex = (w / 2) * (1 - (1 - rx) * f), ez = (d / 2) * (1 - (1 - rz) * f);
+    const corners = [[ex, ez], [-ex, ez], [-ex, -ez], [ex, -ez]], pts = [];
+    for (let s = 0; s < 4; s++) {
+      const [ax, az] = corners[s], [bx, bz] = corners[(s + 1) % 4];
+      for (const t of [0, 0.25, 0.5, 0.75]) {
+        const c = Math.abs(2 * t - 1) ** 4, out = 1 + 0.1 * c * (1 - u) ** 2;
+        pts.push(V((ax + (bx - ax) * t) * out, u * h + 0.5 * h * c * (1 - u) ** 2, (az + (bz - az) * t) * out));
+      }
+    }
+    return pts;
+  };
+  const rings = Array.from({ length: K + 1 }, (_, k) => ring(k)), pos = [], col = [];
+  // ring points run clockwise seen from above, so b and c swap to make faces point outward
+  const tri = (a, c, b, colour) => { pos.push(a.x, a.y, a.z, b.x, b.y, b.z, c.x, c.y, c.z); for (let i = 0; i < 3; i++) col.push(colour.r, colour.g, colour.b); };
+  const N = rings[0].length;
+  for (let k = 0; k < K; k++) {
+    const colour = k >= 2 ? SNOWY : GOLD;
+    for (let j = 0; j < N; j++) {
+      const a = rings[k][j], b = rings[k][(j + 1) % N], c = rings[k + 1][(j + 1) % N], e = rings[k + 1][j];
+      tri(a, b, c, colour); tri(a, c, e, colour);
+    }
+  }
+  const top = V(0, h, 0), under = V(0, 0.15 * h, 0);
+  for (let j = 0; j < N; j++) {
+    tri(rings[K][j], rings[K][(j + 1) % N], top, SNOWY);
+    tri(rings[0][(j + 1) % N], rings[0][j], under, EAVE);
+  }
+  const g = new BufferGeometry();
+  g.setAttribute('position', new Float32BufferAttribute(pos, 3));
+  g.setAttribute('color', new Float32BufferAttribute(col, 3));
+  g.computeVertexNormals();
+  return { g, ridge: [rx * w, rz * d], corners: rings[0].filter((_, j) => j % 4 === 0) };
 }
-function hall(x, z, w, d, double) {
+const roofMat = std(0xffffff, { vertexColors: true, roughness: 0.7 });
+// acc collects ridge beams and ridge beasts for every hall, drawn later as two instanced meshes
+function addRoof(g, acc, x, z, w, d, h, y, ridged) {
+  const r = sweptRoof(w, d, h), m = new Mesh(r.g, roofMat);
+  m.position.y = y;
+  g.add(m);
+  r.corners.forEach((c) => acc.beasts.push({ p: [x + c.x * 0.9, y + c.y + 0.25, z + c.z * 0.9], s: [0.22, 0.5, 0.22] }));
+  if (!ridged) return;
+  const [lx, lz] = r.ridge;
+  acc.ridges.push({ p: [x, y + h + 0.1, z], s: [lx + 0.6, 0.4, lz + 0.6] });
+  for (const sgn of [-1, 1]) acc.beasts.push({ p: [x + sgn * lx / 2, y + h + 0.6, z + sgn * lz / 2], s: [0.35, 0.9, 0.35] });
+}
+function hall(acc, x, z, w, d, double) {
   const g = new Group();
   g.position.set(x, 0, z);
   const terrace = new Mesh(new BoxGeometry(w * 1.25, 1.2, d * 1.4), std(0xe8ecf3)); terrace.position.y = 0.6;
   const body = new Mesh(new BoxGeometry(w * 0.86, 3.4, d * 0.8), std(0x8f2a1f)); body.position.y = 2.9;
-  const roof = hipRoof(w * 1.05, d * 1.1, 2.4, 0xd9a33a); roof.position.y = 4.6;
-  const snow = hipRoof(w * 0.66, d * 0.7, 1.2, 0xeef3fa); snow.position.y = 5.85;
-  g.add(terrace, body, roof, snow);
+  g.add(terrace, body);
+  addRoof(g, acc, x, z, w * 1.15, d * 1.25, 2.6, 4.5, !double);
   if (double) {
-    const r2 = hipRoof(w * 0.8, d * 0.85, 2, 0xd9a33a); r2.position.y = 6.6;
-    const s2 = hipRoof(w * 0.5, d * 0.55, 1, 0xeef3fa); s2.position.y = 7.65;
-    g.add(r2, s2);
+    const upper = new Mesh(new BoxGeometry(w * 0.62, 1.4, d * 0.56), std(0x8f2a1f)); upper.position.y = 6.6;
+    g.add(upper);
+    addRoof(g, acc, x, z, w * 0.88, d * 0.92, 2.2, 7.1, true);
   }
   return g;
 }
@@ -517,8 +564,10 @@ function palace(ctx) {
   const root = new Group();
   const ground = new Mesh(new PlaneGeometry(700, 700), std(0xd9e2f2)); ground.rotation.x = -PI / 2;
   root.add(ground);
-  const halls = new Group();
-  halls.add(hall(-40, -20, 16, 9, true), hall(-40, 8, 11, 7, false), hall(-40, 30, 13, 8, true), hall(-62, 5, 9, 6, false), hall(-18, 5, 9, 6, false));
+  const halls = new Group(), acc = { ridges: [], beasts: [] };
+  halls.add(hall(acc, -40, -20, 16, 9, true), hall(acc, -40, 8, 11, 7, false), hall(acc, -40, 30, 13, 8, true), hall(acc, -62, 5, 9, 6, false), hall(acc, -18, 5, 9, 6, false));
+  halls.add(instances(new BoxGeometry(1, 1, 1), std(0xb8862a), acc.ridges));
+  halls.add(instances(new ConeGeometry(1, 1, 5), std(0x3a3f4f), acc.beasts));
   halls.scale.setScalar(1.7); halls.position.set(28, 0, -6);
   root.add(halls);
   const redWall = std(0x8f2a1f);
