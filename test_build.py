@@ -73,3 +73,12 @@ assert all(it['who'] in ('both', 'her', 'him') for it in checklist['items'])
 sunset = json.loads((HERE / 'content' / 'sunset.json').read_text(encoding='utf-8'))
 assert [d['date'] for d in sunset['places']['chongli']['days']] == dates
 print('OK content')
+
+# Every font and script the site ships is precached (offline + China).
+sw = (HERE / 'site' / 'sw.js').read_text(encoding='utf-8')
+for f in sorted((HERE / 'site' / 'fonts').glob('*.woff2')) + sorted((HERE / 'site').glob('*.js')):
+    rel = f.relative_to(HERE / 'site').as_posix()
+    if rel in ('sw.js',) or rel.startswith('test_'):
+        continue
+    assert f"'{rel}'" in sw, f'{rel} not precached in sw.js'
+print('OK precache')

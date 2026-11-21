@@ -22,8 +22,9 @@ const svg = (name) => `<svg viewBox="0 0 24 24" aria-hidden="true">${icon[name]}
 
 let T = null; // trip.json
 let C = { phrases: null, sunset: null, checklist: null }; // site/content/*.json, each null if it failed to load
-let route = null; // the WebGL scene, once it runs
+let world = null; // the WebGL scene, once it runs
 let heroView = { day: null };
+let navDay = 0; // the day ←/→ step from
 
 // ?today=2026-12-10&time=14:30 fakes the clock for testing.
 function now() {
@@ -180,21 +181,35 @@ function installHelp() {
 }
 
 // size: 'tall' (Today), 'mid' (a day), 'short' (credits). The cover of the visible day loads eagerly.
-// view: what the route scene frames, { day: index } or { day: null } for the whole trip.
+// view: which camera shot the world uses, { day: index } or { day: null } (+ end: true for the closing vista).
 function setHero(eyebrow, title, sub, cover, size, view) {
   $('#hero').dataset.size = size;
   heroView = view;
-  route?.show(view);
+  world?.show(view);
   const img = $('#cover');
+  const card = $('#postcard');
   if (cover) {
     if (img.getAttribute('src') !== cover.file) img.src = cover.file;
+    img.width = cover.w;
+    img.height = cover.h;
     img.alt = cover.alt || '';
+    card.querySelector('figcaption').textContent = cover.standin || cover.alt || '';
+    card.hidden = false;
   } else {
     img.removeAttribute('src');
     img.alt = '';
+    card.hidden = true;
   }
+  // trip progress, like the talk's slide bar
+  const progress = view.day === null || view.day === undefined ? 0 : (view.day + 1) / T.days.length;
+  $('#progress').style.width = `${progress * 100}%`;
+  const count = view.day === null || view.day === undefined ? T.trip.title : dayCount(view.day);
+  $('#count').textContent = count;
   $('#hero-text').innerHTML = `<p class="eyebrow">${esc(eyebrow)}</p><h1>${esc(title)}</h1><p class="sub">${esc(sub)}</p>`;
 }
+
+const pad2 = (n) => String(n).padStart(2, '0');
+function dayCount(i) { return `Day ${pad2(i + 1)} / ${pad2(T.days.length)}`; }
 
 function creditsLink() {
   return '<p class="credits-link"><a href="#credits">Photo credits</a></p>';
@@ -210,10 +225,13 @@ function renderToday() {
     const n = state.daysUntil;
     const title = n === 1 ? 'Trip starts tomorrow' : `${n} days to go`;
     setHero(T.trip.title, title, `Day 1 · ${dayTitle(day)} · ${place}`, day.cover, 'tall', { day: null });
+    navDay = -1;
   } else if (state.phase === 'after') {
-    setHero('Trip finished', place, `Last day · ${dayTitle(day)}`, day.cover, 'tall', { day: null });
+    setHero('Trip finished', place, `Last day · ${dayTitle(day)}`, day.cover, 'tall', { day: null, end: true });
+    navDay = state.dayIndex;
   } else {
-    setHero(`Today · Day ${state.dayIndex + 1} of ${T.days.length}`, place, dayTitle(day), day.cover, 'tall', { day: state.dayIndex });
+    setHero(`Today · ${dayCount(state.dayIndex)}`, place, dayTitle(day), day.cover, 'tall', { day: state.dayIndex });
+    navDay = state.dayIndex;
   }
   const hotelDate = state.phase === 'before' ? T.trip.start : ymd;
   const heading = state.phase === 'during' ? 'Today' : state.phase === 'before' ? 'Day 1 plan' : 'Last day';
@@ -252,7 +270,8 @@ function markNow() {
 function renderDays(index) {
   const i = Math.min(Math.max(index, 0), T.days.length - 1);
   const day = T.days[i];
-  setHero(`Day ${i + 1} of ${T.days.length} · ${dayTitle(day)}`, splitLabel(day.label).place, T.trip.title, day.cover, 'mid', { day: i });
+  setHero(`${dayCount(i)} · ${dayTitle(day)}`, splitLabel(day.label).place, T.trip.title, day.cover, 'mid', { day: i });
+  navDay = i;
   const strip = T.days.map((d, k) => {
     const dt = new Date(`${d.date}T12:00:00Z`);
     const wd = dt.toLocaleDateString('en-GB', { weekday: 'short', timeZone: 'UTC' });
@@ -291,7 +310,7 @@ function renderPhrases() {
 
 // CC BY / BY-SA need author, licence and source next to the work they credit.
 function renderCredits() {
-  setHero(T.trip.title, 'Photo credits', 'Wikimedia Commons, free licences', null, 'short', { day: null });
+  setHero(T.trip.title, 'Photo credits', 'Wikimedia Commons, free licences', null, 'short', { day: null, end: true });
   const rows = [];
   T.days.forEach((d, k) => { if (d.cover) rows.push({ use: `Day ${k + 1} cover`, photo: d.cover }); });
   Object.values(T.places).forEach((p) => { if (p.photo) rows.push({ use: p.name, photo: p.photo }); });
@@ -382,27 +401,30 @@ function watchUpdates(reg) {
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') reg.update().catch(() => {}); });
 }
 
-// ---------- route scene ----------
-// The cover photo is the first paint and the whole fallback; the scene fades in over it, then the
-// photo shrinks to a postcard. Lost context (iOS does this under memory pressure) puts the photo back.
-function maybeRoute() {
+// ---------- world scene ----------
+// The CSS dusk gradient is the first paint and the whole fallback; the scene fades in over it.
+// A lost context (iOS does this under memory pressure) drops back to the gradient.
+function maybeWorld() {
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if (!document.createElement('canvas').getContext('webgl2')) return; // three r170 needs WebGL2
-  import('./route.js').then((m) => {
-    const hero = $('#hero');
-    const scene = m.startRoute(hero, T);
-    route = scene;
+  import('./world.js').then((m) => {
+    const alt = $('#alt');
+    const scene = m.startWorld($('#hero'), T, (metres) => { alt.textContent = `ALT ${metres.toLocaleString('en-US')} M`; });
+    world = scene;
     scene.show(heroView);
     scene.canvas.addEventListener('webglcontextlost', () => {
-      route = null;
+      world = null;
       scene.canvas.remove();
-      hero.classList.remove('gl');
+      alt.textContent = '';
     });
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      scene.canvas.classList.add('on');
-      setTimeout(() => { if (route) hero.classList.add('gl'); }, 900);
-    }));
+    requestAnimationFrame(() => requestAnimationFrame(() => scene.canvas.classList.add('on')));
   }).catch(() => {});
+}
+
+// ←/→ step through the days like slides (desktop keyboard, and the HUD arrows).
+function stepDay(delta) {
+  const i = Math.min(Math.max(navDay + delta, 0), T.days.length - 1);
+  location.hash = `#days/${i}`;
 }
 
 // ---------- boot ----------
@@ -420,6 +442,8 @@ document.addEventListener('click', (e) => {
     try { localStorage.setItem('bj26-install-done', '1'); } catch {}
     t.closest('.install').remove();
   }
+  if (t.dataset.a === 'prev-day') stepDay(-1);
+  if (t.dataset.a === 'next-day') stepDay(1);
   if (t.dataset.a === 'update' && newSW) { reloading = true; newSW.postMessage('skipWaiting'); }
 });
 document.addEventListener('change', (e) => {
@@ -433,7 +457,13 @@ document.addEventListener('input', (e) => {
   if (!e.target.matches('[data-size]')) return;
   try { localStorage.setItem('bj26-size', e.target.value.trim()); } catch {}
 });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDriver(); });
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeDriver();
+  if (!T || !$('#driver').hidden || e.target.closest('input, textarea') || e.altKey || e.ctrlKey || e.metaKey) return;
+  if (/^#(phrases|credits)/.test(location.hash)) return;
+  if (e.key === 'ArrowRight') { e.preventDefault(); stepDay(1); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); stepDay(-1); }
+});
 window.addEventListener('hashchange', () => { render(); window.scrollTo(0, 0); });
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && T) render(); });
 setInterval(() => { if (T && !/^#(days|credits|phrases)/.test(location.hash)) markNow(); }, 60000);
@@ -442,7 +472,7 @@ setInterval(() => { if (T && !/^#(days|credits|phrases)/.test(location.hash)) ma
 const loadJson = (url) => fetch(url).then((r) => r.json());
 const loadExtra = (url) => loadJson(url).catch(() => null);
 Promise.all([loadJson('trip.json'), loadExtra('content/phrases.json'), loadExtra('content/sunset.json'), loadExtra('content/checklist.json')])
-  .then(([trip, phrases, sunset, checklist]) => { T = trip; C = { phrases, sunset, checklist }; render(); maybeRoute(); })
+  .then(([trip, phrases, sunset, checklist]) => { T = trip; C = { phrases, sunset, checklist }; render(); maybeWorld(); })
   .catch(() => { $('#view').innerHTML = '<p class="empty">Could not load the trip. Open once with internet.</p>'; });
 
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then(watchUpdates).catch(() => {});
