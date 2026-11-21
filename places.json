@@ -6,7 +6,7 @@
     "city_zh": "北京",
     "phone": "+86-10-85221688",
     "match": ["Land PEK", "Train -> Beijing"],
-    "photo": {"file": "img/crystal-orange.webp", "w": 480, "h": 320, "standin": "Sanlitun Taikoo Li, next to the hotel", "title": "File:Taikoo Li Sanlitun South (20200808170437).jpg", "author": "N509FZ", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0", "source": "https://commons.wikimedia.org/wiki/File:Taikoo_Li_Sanlitun_South_(20200808170437).jpg"}
+    "photo": {"file": "img/crystal-orange.webp", "w": 1200, "h": 800, "standin": "Sanlitun Taikoo Li, next to the hotel", "title": "File:Taikoo Li Sanlitun South (20200808170437).jpg", "author": "N509FZ", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0", "source": "https://commons.wikimedia.org/wiki/File:Taikoo_Li_Sanlitun_South_(20200808170437).jpg"}
   },
   "thaiwoo-nanshanli": {
     "name": "Thaiwoo Town Nanshanli Hotel",
@@ -15,7 +15,7 @@
     "city_zh": "张家口",
     "phone": "+86-313-4778300",
     "match": ["Arrive resort"],
-    "photo": {"file": "img/thaiwoo-nanshanli.webp", "w": 480, "h": 320, "standin": "Chongli resort area, not the hotel itself", "title": "File:Logistics movement - Zhangjiakou 3 of 4 edit.jpg", "author": "Kate McLoughlin", "license": "CC BY-SA 3.0", "license_url": "https://creativecommons.org/licenses/by-sa/3.0", "source": "https://commons.wikimedia.org/wiki/File:Logistics_movement_-_Zhangjiakou_3_of_4_edit.jpg"}
+    "photo": {"file": "img/thaiwoo-nanshanli.webp", "w": 1200, "h": 800, "standin": "Chongli resort area, not the hotel itself", "title": "File:Logistics movement - Zhangjiakou 3 of 4 edit.jpg", "author": "Kate McLoughlin", "license": "CC BY-SA 3.0", "license_url": "https://creativecommons.org/licenses/by-sa/3.0", "source": "https://commons.wikimedia.org/wiki/File:Logistics_movement_-_Zhangjiakou_3_of_4_edit.jpg"}
   },
   "pek": {
     "name": "Beijing Capital International Airport, Terminal 3",
@@ -23,7 +23,7 @@
     "address_zh": "北京市顺义区首都国际机场3号航站楼",
     "city_zh": "北京",
     "match": ["-> Airport"],
-    "photo": {"file": "img/pek.webp", "w": 480, "h": 320, "title": "File:Beijing Capital International Airport Terminal 3 Departure hall 20090818.jpg", "author": "颐园新居", "license": "CC BY-SA 3.0", "license_url": "https://creativecommons.org/licenses/by-sa/3.0", "source": "https://commons.wikimedia.org/wiki/File:Beijing_Capital_International_Airport_Terminal_3_Departure_hall_20090818.jpg"}
+    "photo": {"file": "img/pek.webp", "w": 1200, "h": 800, "title": "File:Beijing Capital International Airport Terminal 3 Departure hall 20090818.jpg", "author": "颐园新居", "license": "CC BY-SA 3.0", "license_url": "https://creativecommons.org/licenses/by-sa/3.0", "source": "https://commons.wikimedia.org/wiki/File:Beijing_Capital_International_Airport_Terminal_3_Departure_hall_20090818.jpg"}
   },
   "qinghe-station": {
     "name": "Qinghe Railway Station",
@@ -31,7 +31,7 @@
     "address_zh": "北京市海淀区清河站",
     "city_zh": "北京",
     "match": ["Train -> Chongli"],
-    "photo": {"file": "img/qinghe-station.webp", "w": 480, "h": 320, "title": "File:Qinghe Railway Station (20220717175655).jpg", "author": "N509FZ", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0", "source": "https://commons.wikimedia.org/wiki/File:Qinghe_Railway_Station_(20220717175655).jpg"}
+    "photo": {"file": "img/qinghe-station.webp", "w": 1200, "h": 800, "title": "File:Qinghe Railway Station (20220717175655).jpg", "author": "N509FZ", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0", "source": "https://commons.wikimedia.org/wiki/File:Qinghe_Railway_Station_(20220717175655).jpg"}
   },
   "lama-temple": {
     "name": "Lama Temple",
@@ -40,7 +40,7 @@
     "city_zh": "北京",
     "match": ["Lama Temple"],
     "note_en": "Opens 9:00. Sources conflict on booking; one 2026 source says timed entry released 7 days ahead at midnight, so book to be safe.",
-    "photo": {"file": "img/lama-temple.webp", "w": 480, "h": 320, "title": "File:65618-Beijing-Lama-Temple (28098480603).jpg", "author": "xiquinhosilva", "license": "CC BY 2.0", "license_url": "https://creativecommons.org/licenses/by/2.0", "source": "https://commons.wikimedia.org/wiki/File:65618-Beijing-Lama-Temple_(28098480603).jpg"}
+    "photo": {"file": "img/lama-temple.webp", "w": 1200, "h": 800, "title": "File:65618-Beijing-Lama-Temple (28098480603).jpg", "author": "xiquinhosilva", "license": "CC BY 2.0", "license_url": "https://creativecommons.org/licenses/by/2.0", "source": "https://commons.wikimedia.org/wiki/File:65618-Beijing-Lama-Temple_(28098480603).jpg"}
   },
   "universal-beijing": {
     "name": "Universal Beijing Resort",
@@ -48,7 +48,7 @@
     "address_zh": "北京市通州区北京环球度假区",
     "city_zh": "北京",
     "match": ["Universal"],
-    "photo": {"file": "img/universal-beijing.webp", "w": 480, "h": 320, "title": "File:Beijing universal entrance.jpg", "author": "Owen3droblox", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0", "source": "https://commons.wikimedia.org/wiki/File:Beijing_universal_entrance.jpg"}
+    "photo": {"file": "img/universal-beijing.webp", "w": 1200, "h": 800, "title": "File:Beijing universal entrance.jpg", "author": "Owen3droblox", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0", "source": "https://commons.wikimedia.org/wiki/File:Beijing_universal_entrance.jpg"}
   },
   "feidachu": {
     "name": "Feidachu, Sanlitun Taikoo Li",
@@ -57,7 +57,7 @@
     "city_zh": "北京",
     "match": ["Feidachu"],
     "note_en": "Sanlitun Taikoo Li. Lunch from 11:00, queue numbers from ~10:30. Walk-in, long queues.",
-    "photo": {"file": "img/feidachu.webp", "w": 480, "h": 320, "standin": "Hunan chilli pork, the dish", "title": "File:Nongjia Xiaochaorou at Xiangdu Xiangwei Restaurant, Beijing (20240125114913).jpg", "author": "N509FZ", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0", "source": "https://commons.wikimedia.org/wiki/File:Nongjia_Xiaochaorou_at_Xiangdu_Xiangwei_Restaurant,_Beijing_(20240125114913).jpg"}
+    "photo": {"file": "img/feidachu.webp", "w": 1200, "h": 800, "standin": "Hunan chilli pork, the dish", "title": "File:Nongjia Xiaochaorou at Xiangdu Xiangwei Restaurant, Beijing (20240125114913).jpg", "author": "N509FZ", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0", "source": "https://commons.wikimedia.org/wiki/File:Nongjia_Xiaochaorou_at_Xiangdu_Xiangwei_Restaurant,_Beijing_(20240125114913).jpg"}
   },
   "16mm-cafe": {
     "name": "16mm Cafe, Nanluoguxiang",
@@ -66,7 +66,7 @@
     "city_zh": "北京",
     "match": ["16 MM Cafe"],
     "note_en": "57 Nanluoguxiang. 10:00-02:00. Goldfish under a glass floor.",
-    "photo": {"file": "img/16mm-cafe.webp", "w": 480, "h": 320, "standin": "Nanluoguxiang lane, not the cafe", "title": "File:Nanluogu Xiang (6230757826).jpg", "author": "Francisco Anzola", "license": "CC BY 2.0", "license_url": "https://creativecommons.org/licenses/by/2.0", "source": "https://commons.wikimedia.org/wiki/File:Nanluogu_Xiang_(6230757826).jpg"}
+    "photo": {"file": "img/16mm-cafe.webp", "w": 1200, "h": 800, "standin": "Nanluoguxiang lane, not the cafe", "title": "File:Nanluogu Xiang (6230757826).jpg", "author": "Francisco Anzola", "license": "CC BY 2.0", "license_url": "https://creativecommons.org/licenses/by/2.0", "source": "https://commons.wikimedia.org/wiki/File:Nanluogu_Xiang_(6230757826).jpg"}
   },
   "tiananmen-square": {
     "name": "Tiananmen Square",
@@ -74,7 +74,7 @@
     "address_zh": "北京市东城区东长安街天安门广场",
     "city_zh": "北京",
     "match": ["Tian an men"],
-    "photo": {"file": "img/tiananmen-square.webp", "w": 480, "h": 320, "title": "File:北京天安门，2016年11月 (2).jpg", "author": "Another Believer", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0", "source": "https://commons.wikimedia.org/wiki/File:%E5%8C%97%E4%BA%AC%E5%A4%A9%E5%AE%89%E9%97%A8%EF%BC%8C2016%E5%B9%B411%E6%9C%88_(2).jpg"}
+    "photo": {"file": "img/tiananmen-square.webp", "w": 1200, "h": 800, "title": "File:北京天安门，2016年11月 (2).jpg", "author": "Another Believer", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0", "source": "https://commons.wikimedia.org/wiki/File:%E5%8C%97%E4%BA%AC%E5%A4%A9%E5%AE%89%E9%97%A8%EF%BC%8C2016%E5%B9%B411%E6%9C%88_(2).jpg"}
   },
   "qianmen-street": {
     "name": "Qianmen Street",
@@ -83,7 +83,7 @@
     "city_zh": "北京",
     "match": ["Qienmen", "Qianmen"],
     "note_en": "At 16:30 take a remote queue number for Peking Chamber: WeChat mini-program 'Siji Minfu' → take a queue number (pai dui qu hao).",
-    "photo": {"file": "img/qianmen-street.webp", "w": 480, "h": 320, "title": "File:201902 Qianmen Street in snow.jpg", "author": "Zheng sun", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0", "source": "https://commons.wikimedia.org/wiki/File:201902_Qianmen_Street_in_snow.jpg"}
+    "photo": {"file": "img/qianmen-street.webp", "w": 1200, "h": 800, "title": "File:201902 Qianmen Street in snow.jpg", "author": "Zheng sun", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0", "source": "https://commons.wikimedia.org/wiki/File:201902_Qianmen_Street_in_snow.jpg"}
   },
   "peking-chamber": {
     "name": "Siji Minfu Roast Duck (Peking Chamber), Forbidden City branch",
@@ -92,7 +92,7 @@
     "city_zh": "北京",
     "match": ["Peking Chamber"],
     "note_en": "= Siji Minfu, Forbidden City branch, 11 Nanchizi St (Tiananmen East, L1). 10:30-21:30. Walk-in wait 1-3 hr, use the remote queue.",
-    "photo": {"file": "img/peking-chamber.webp", "w": 480, "h": 320, "standin": "Peking duck, the dish", "title": "File:Sliced Peking Duck with traditional condiments.jpg", "author": "Daifawei", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0", "source": "https://commons.wikimedia.org/wiki/File:Sliced_Peking_Duck_with_traditional_condiments.jpg"}
+    "photo": {"file": "img/peking-chamber.webp", "w": 1200, "h": 800, "standin": "Peking duck, the dish", "title": "File:Sliced Peking Duck with traditional condiments.jpg", "author": "Daifawei", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0", "source": "https://commons.wikimedia.org/wiki/File:Sliced_Peking_Duck_with_traditional_condiments.jpg"}
   },
   "jindingxuan": {
     "name": "Jin Ding Xuan, Ditan branch",
@@ -101,7 +101,7 @@
     "city_zh": "北京",
     "match": ["JinDingXuan"],
     "note_en": "Jin Ding Xuan, Ditan branch, 77 Hepingli West St (Yonghegong, L2/L5). 24h. ~40 min taxi from Universal; resort shuttle stops 20:40.",
-    "photo": {"file": "img/jindingxuan.webp", "w": 480, "h": 320, "standin": "Dim sum, the dish", "title": "File:Dim Sum Breakfast.jpg", "author": "afterdog", "license": "CC0", "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en", "source": "https://commons.wikimedia.org/wiki/File:Dim_Sum_Breakfast.jpg"}
+    "photo": {"file": "img/jindingxuan.webp", "w": 1200, "h": 800, "standin": "Dim sum, the dish", "title": "File:Dim Sum Breakfast.jpg", "author": "afterdog", "license": "CC0", "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en", "source": "https://commons.wikimedia.org/wiki/File:Dim_Sum_Breakfast.jpg"}
   },
   "shuiguo-spa": {
     "name": "Shuiguo Tangquan spa, Sihui",
@@ -110,7 +110,7 @@
     "city_zh": "北京",
     "match": ["ShuiGuo"],
     "note_en": "Shuiguo Tangquan, Sihui (Sihui East, L1). 24h. ~20 min from Sanlitun. Ticket on Trip.com or at door. Bring passports. Bathing is nude, men and women separate.",
-    "photo": {"file": "img/shuiguo-spa.webp", "w": 480, "h": 320, "standin": "A sauna, not Shuiguo", "title": "File:Munich - Sauna in Bath House - 8470.jpg", "author": "Jorge Royan", "license": "CC BY-SA 3.0", "license_url": "https://creativecommons.org/licenses/by-sa/3.0", "source": "https://commons.wikimedia.org/wiki/File:Munich_-_Sauna_in_Bath_House_-_8470.jpg"}
+    "photo": {"file": "img/shuiguo-spa.webp", "w": 1200, "h": 800, "standin": "A sauna, not Shuiguo", "title": "File:Munich - Sauna in Bath House - 8470.jpg", "author": "Jorge Royan", "license": "CC BY-SA 3.0", "license_url": "https://creativecommons.org/licenses/by-sa/3.0", "source": "https://commons.wikimedia.org/wiki/File:Munich_-_Sauna_in_Bath_House_-_8470.jpg"}
   },
   "mutianyu": {
     "name": "Mutianyu Great Wall",
@@ -118,7 +118,7 @@
     "address_zh": "北京市怀柔区渤海镇慕田峪村",
     "city_zh": "北京",
     "match": ["Mutianyu"],
-    "photo": {"file": "img/mutianyu.webp", "w": 480, "h": 320, "title": "File:The Mutianyu section of the Great Wall of China.jpg", "author": "Lloyd Tudor", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0", "source": "https://commons.wikimedia.org/wiki/File:The_Mutianyu_section_of_the_Great_Wall_of_China.jpg"}
+    "photo": {"file": "img/mutianyu.webp", "w": 1200, "h": 800, "title": "File:The Mutianyu section of the Great Wall of China.jpg", "author": "Lloyd Tudor", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0", "source": "https://commons.wikimedia.org/wiki/File:The_Mutianyu_section_of_the_Great_Wall_of_China.jpg"}
   },
   "carbo": {
     "name": "Carbo, Friendship Store back courtyard",
@@ -126,7 +126,7 @@
     "address_zh": "北京市朝阳区建国门外大街17号友谊商店",
     "city_zh": "北京",
     "match": ["Carbo"],
-    "photo": {"file": "img/carbo.webp", "w": 480, "h": 320, "standin": "Spaghetti carbonara, the dish", "title": "File:Spaghetti alla Carbonara 2.jpg", "author": "Amin", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0", "source": "https://commons.wikimedia.org/wiki/File:Spaghetti_alla_Carbonara_2.jpg"}
+    "photo": {"file": "img/carbo.webp", "w": 1200, "h": 800, "standin": "Spaghetti carbonara, the dish", "title": "File:Spaghetti alla Carbonara 2.jpg", "author": "Amin", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0", "source": "https://commons.wikimedia.org/wiki/File:Spaghetti_alla_Carbonara_2.jpg"}
   },
   "wangfujing": {
     "name": "Wangfujing Street",
@@ -134,7 +134,7 @@
     "address_zh": "北京市东城区王府井大街",
     "city_zh": "北京",
     "match": ["Wangfujin"],
-    "photo": {"file": "img/wangfujing.webp", "w": 480, "h": 320, "title": "File:Wangfujing at night, January 2025.jpg", "author": "Benlisquare", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0", "source": "https://commons.wikimedia.org/wiki/File:Wangfujing_at_night,_January_2025.jpg"}
+    "photo": {"file": "img/wangfujing.webp", "w": 1200, "h": 800, "title": "File:Wangfujing at night, January 2025.jpg", "author": "Benlisquare", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0", "source": "https://commons.wikimedia.org/wiki/File:Wangfujing_at_night,_January_2025.jpg"}
   },
   "long-time-ago": {
     "name": "Long Time Ago lamb skewers, 3.3 Mall Sanlitun",
@@ -143,7 +143,7 @@
     "city_zh": "北京",
     "match": ["Long time Ago"],
     "note_en": "Henjiu Yiqian lamb skewers, 3.3 Mall 5F, Sanlitun. Opens 17:00. Remote queue on WeChat mini-program 'Henjiu Yiqian'.",
-    "photo": {"file": "img/long-time-ago.webp", "w": 480, "h": 320, "standin": "Lamb skewers, the dish", "title": "File:Lamb kebabs on grill at Ancient City of Kashi (20230923224509).jpg", "author": "N509FZ", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0", "source": "https://commons.wikimedia.org/wiki/File:Lamb_kebabs_on_grill_at_Ancient_City_of_Kashi_(20230923224509).jpg"}
+    "photo": {"file": "img/long-time-ago.webp", "w": 1200, "h": 800, "standin": "Lamb skewers, the dish", "title": "File:Lamb kebabs on grill at Ancient City of Kashi (20230923224509).jpg", "author": "N509FZ", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0", "source": "https://commons.wikimedia.org/wiki/File:Lamb_kebabs_on_grill_at_Ancient_City_of_Kashi_(20230923224509).jpg"}
   },
   "forbidden-city": {
     "name": "Forbidden City (Palace Museum)",
@@ -151,7 +151,7 @@
     "address_zh": "北京市东城区景山前街4号",
     "city_zh": "北京",
     "match": ["Forbidden City"],
-    "photo": {"file": "img/forbidden-city.webp", "w": 480, "h": 320, "title": "File:Northwest corner tower of the Forbidden City after snow (20211107135201).jpg", "author": "N509FZ", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0", "source": "https://commons.wikimedia.org/wiki/File:Northwest_corner_tower_of_the_Forbidden_City_after_snow_(20211107135201).jpg"}
+    "photo": {"file": "img/forbidden-city.webp", "w": 1200, "h": 800, "title": "File:Northwest corner tower of the Forbidden City after snow (20211107135201).jpg", "author": "N509FZ", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0", "source": "https://commons.wikimedia.org/wiki/File:Northwest_corner_tower_of_the_Forbidden_City_after_snow_(20211107135201).jpg"}
   },
   "fangzhuanchang-69": {
     "name": "Fangzhuanchang No. 69 Zhajiang Noodles",
@@ -160,7 +160,7 @@
     "city_zh": "北京",
     "match": ["Lunch near Forbidden City"],
     "note_en": "Her pick: Fangzhuanchang No. 69 zhajiang noodles (Michelin Bib, 10-15 min taxi, queue; this is the driver card) / Chengdu Zhujingban Sichuan (5-8 min walk from north gate) / Heyan Roubing Beijing meat pie (east gate).",
-    "photo": {"file": "img/fangzhuanchang-69.webp", "w": 480, "h": 320, "title": "File:Zhajiangmian before stirring at Fangzhuanchang (20210115130756).jpg", "author": "N509FZ", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0", "source": "https://commons.wikimedia.org/wiki/File:Zhajiangmian_before_stirring_at_Fangzhuanchang_(20210115130756).jpg"}
+    "photo": {"file": "img/fangzhuanchang-69.webp", "w": 1200, "h": 800, "title": "File:Zhajiangmian before stirring at Fangzhuanchang (20210115130756).jpg", "author": "N509FZ", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0", "source": "https://commons.wikimedia.org/wiki/File:Zhajiangmian_before_stirring_at_Fangzhuanchang_(20210115130756).jpg"}
   },
   "summer-palace": {
     "name": "Summer Palace",
@@ -185,7 +185,7 @@
     "address_zh": "北京市朝阳区三里屯路19号",
     "city_zh": "北京",
     "match": ["Salitun", "Sanlitun"],
-    "photo": {"file": "img/sanlitun-taikoo-li.webp", "w": 480, "h": 320, "title": "File:Sanlitun 2015 October.jpg", "author": "Morio", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0", "source": "https://commons.wikimedia.org/wiki/File:Sanlitun_2015_October.jpg"}
+    "photo": {"file": "img/sanlitun-taikoo-li.webp", "w": 1200, "h": 800, "title": "File:Sanlitun 2015 October.jpg", "author": "Morio", "license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0", "source": "https://commons.wikimedia.org/wiki/File:Sanlitun_2015_October.jpg"}
   },
   "temple-of-heaven": {
     "name": "Temple of Heaven Park",
@@ -193,7 +193,7 @@
     "address_zh": "北京市东城区天坛公园",
     "city_zh": "北京",
     "match": ["Temple of Haven", "Temple of Heaven"],
-    "photo": {"file": "img/temple-of-heaven.webp", "w": 480, "h": 320, "title": "File:Temple of Heaven - Hall of Prayer for Good Harvests 01 (cropped).jpg", "author": "xiquinhosilva", "license": "CC BY 2.0", "license_url": "https://creativecommons.org/licenses/by/2.0", "source": "https://commons.wikimedia.org/wiki/File:Temple_of_Heaven_-_Hall_of_Prayer_for_Good_Harvests_01_(cropped).jpg"}
+    "photo": {"file": "img/temple-of-heaven.webp", "w": 1200, "h": 800, "title": "File:Temple of Heaven - Hall of Prayer for Good Harvests 01 (cropped).jpg", "author": "xiquinhosilva", "license": "CC BY 2.0", "license_url": "https://creativecommons.org/licenses/by/2.0", "source": "https://commons.wikimedia.org/wiki/File:Temple_of_Heaven_-_Hall_of_Prayer_for_Good_Harvests_01_(cropped).jpg"}
   },
   "voyage-coffee": {
     "name": "Voyage Coffee, Sanlihe Park branch",
@@ -201,7 +201,7 @@
     "address_zh": "北京市东城区三里河公园",
     "city_zh": "北京",
     "match": ["Voyage coffee"],
-    "photo": {"file": "img/voyage-coffee.webp", "w": 480, "h": 320, "standin": "A latte, not Voyage", "title": "File:Two Hands Cafe latte art (Unsplash).jpg", "author": "Drew Coffman", "license": "CC0", "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en", "source": "https://commons.wikimedia.org/wiki/File:Two_Hands_Cafe_latte_art_(Unsplash).jpg"}
+    "photo": {"file": "img/voyage-coffee.webp", "w": 1200, "h": 800, "standin": "A latte, not Voyage", "title": "File:Two Hands Cafe latte art (Unsplash).jpg", "author": "Drew Coffman", "license": "CC0", "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en", "source": "https://commons.wikimedia.org/wiki/File:Two_Hands_Cafe_latte_art_(Unsplash).jpg"}
   },
   "grandmas-home": {
     "name": "Grandma's Home, Wangfujing APM",
@@ -210,6 +210,6 @@
     "city_zh": "北京",
     "match": ["Grandma's"],
     "note_en": "Wangfujing APM 6F. Lunch from 10:30. Pickled-cabbage fish (suancai yu) is on the menu in Hangzhou/Shanghai, unconfirmed in Beijing; check Dianping.",
-    "photo": {"file": "img/grandmas-home.webp", "w": 480, "h": 320, "standin": "Suancai fish, the dish", "title": "File:GD 廣東省 Guangdong DG 東莞市 DongGuan 寮步 Liaobu 香市古鎮美食城 XiangShi Ancient Town Food Palace Restaurant 酸菜魚 Suan cai yu November 2025 N13P 01.jpg", "author": "ONWPY WHHCALIO 50028", "license": "CC BY 4.0", "license_url": "https://creativecommons.org/licenses/by/4.0", "source": "https://commons.wikimedia.org/wiki/File:GD_%E5%BB%A3%E6%9D%B1%E7%9C%81_Guangdong_DG_%E6%9D%B1%E8%8E%9E%E5%B8%82_DongGuan_%E5%AF%AE%E6%AD%A5_Liaobu_%E9%A6%99%E5%B8%82%E5%8F%A4%E9%8E%AE%E7%BE%8E%E9%A3%9F%E5%9F%8E_XiangShi_Ancient_Town_Food_Palace_Restaurant_%E9%85%B8%E8%8F%9C%E9%AD%9A_Suan_cai_yu_November_2025_N13P_01.jpg"}
+    "photo": {"file": "img/grandmas-home.webp", "w": 1200, "h": 800, "standin": "Suancai fish, the dish", "title": "File:GD 廣東省 Guangdong DG 東莞市 DongGuan 寮步 Liaobu 香市古鎮美食城 XiangShi Ancient Town Food Palace Restaurant 酸菜魚 Suan cai yu November 2025 N13P 01.jpg", "author": "ONWPY WHHCALIO 50028", "license": "CC BY 4.0", "license_url": "https://creativecommons.org/licenses/by/4.0", "source": "https://commons.wikimedia.org/wiki/File:GD_%E5%BB%A3%E6%9D%B1%E7%9C%81_Guangdong_DG_%E6%9D%B1%E8%8E%9E%E5%B8%82_DongGuan_%E5%AF%AE%E6%AD%A5_Liaobu_%E9%A6%99%E5%B8%82%E5%8F%A4%E9%8E%AE%E7%BE%8E%E9%A3%9F%E5%9F%8E_XiangShi_Ancient_Town_Food_Palace_Restaurant_%E9%85%B8%E8%8F%9C%E9%AD%9A_Suan_cai_yu_November_2025_N13P_01.jpg"}
   }
 }
