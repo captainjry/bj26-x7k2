@@ -403,13 +403,14 @@ function watchUpdates(reg) {
 
 // ---------- world scene ----------
 // The CSS dusk gradient is the first paint and the whole fallback; the scene fades in over it.
+// Reduced motion gets a still frame of each scene instead of the animation.
 // A lost context (iOS does this under memory pressure) drops back to the gradient.
 function maybeWorld() {
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if (!document.createElement('canvas').getContext('webgl2')) return; // three r170 needs WebGL2
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches; // one frozen frame per screen
   import('./world.js').then((m) => {
     const alt = $('#alt');
-    const scene = m.startWorld($('#hero'), T, (metres) => { alt.textContent = `ALT ${metres.toLocaleString('en-US')} M`; });
+    const scene = m.startWorld($('#hero'), T, (metres) => { alt.textContent = `ALT ${metres.toLocaleString('en-US')} M`; }, { still });
     world = scene;
     scene.show(heroView);
     scene.canvas.addEventListener('webglcontextlost', () => {
