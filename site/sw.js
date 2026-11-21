@@ -1,5 +1,5 @@
 // Bump APP_VERSION on every deploy → new shell cache → page shows "Update available".
-const APP_VERSION = '4';
+const APP_VERSION = '5';
 // Every photo trip.json references (build.py output); offline means all of them, not just the ones viewed.
 const IMAGES = [
   'img/16mm-cafe.webp', 'img/carbo.webp', 'img/cover-2026-12-07-sq.webp',
@@ -18,12 +18,15 @@ const IMAGES = [
   'img/voyage-coffee.webp', 'img/wangfujing.webp',
 ];
 const SHELL = `bj26-shell-${APP_VERSION}`;
-const FILES = ['./', 'fonts/NotoSansThai-400-700-latin-ext.woff2', 'fonts/NotoSansThai-400-700-latin.woff2', 'fonts/NotoSansThai-400-700-thai.woff2', 'fonts/Prompt-600-latin-ext.woff2', 'fonts/Prompt-600-latin.woff2', 'fonts/Prompt-600-thai.woff2', 'fonts/Prompt-700-latin-ext.woff2', 'fonts/Prompt-700-latin.woff2', 'fonts/Prompt-700-thai.woff2', 'index.html', 'style.css', 'app.js', 'logic.js', 'route.js', 'trip.json', 'manifest.webmanifest',
+const FILES = ['./', 'fonts/NotoSansThai-400-700-latin-ext.woff2', 'fonts/NotoSansThai-400-700-latin.woff2', 'fonts/NotoSansThai-400-700-thai.woff2', 'fonts/Prompt-600-latin-ext.woff2', 'fonts/Prompt-600-latin.woff2', 'fonts/Prompt-600-thai.woff2', 'fonts/Prompt-700-latin-ext.woff2', 'fonts/Prompt-700-latin.woff2', 'fonts/Prompt-700-thai.woff2', 'index.html', 'style.css', 'app.js', 'logic.js', 'route.js', 'trip.json', 'content/phrases.json', 'content/sunset.json', 'content/checklist.json', 'manifest.webmanifest',
   'vendor/three.module.min.js', 'icons/icon-192.png', 'icons/icon-512.png', ...IMAGES];
 
 // No skipWaiting here: a new version waits until the user taps the update bar.
 self.addEventListener('install', (e) => e.waitUntil(caches.open(SHELL).then((c) => c.addAll(FILES.map((f) => new Request(f, { cache: 'reload' }))) /* bypass HTTP cache (Pages max-age=600) */)));
-self.addEventListener('message', (e) => { if (e.data === 'skipWaiting') self.skipWaiting(); });
+self.addEventListener('message', (e) => {
+  if (e.data === 'skipWaiting') self.skipWaiting();
+  if (e.data === 'files') e.ports[0]?.postMessage({ files: FILES, cache: SHELL }); // offline-ready check in app.js
+});
 self.addEventListener('activate', (e) => {
   e.waitUntil(caches.keys()
     .then((ks) => Promise.all(ks.filter((k) => k !== SHELL).map((k) => caches.delete(k))))

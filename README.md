@@ -35,6 +35,16 @@ Live at `https://captainjry.github.io/bj26-x7k2/` (public repo `captainjry/bj26-
 - Images live in `site/img/` (WebP q70: stop thumbs 480×320, covers 960×1200 portrait plus a 160×160 square for the credits list), all precached by `site/sw.js` (`IMAGES`, kept equal to what `trip.json` references by `test_build.py`).
 - First screen shows install steps: iPhone Share → Add to Home Screen; Samsung menu → Add to home screen. Open once online before flying.
 
+## Features (2026-11-21, v5)
+
+- **Phrases tab**: show-to-staff cards from `content/phrases.json`. Tap shows big Chinese full screen (same black-on-white card as the driver), with English + Thai under it. `{size}` phrases take a size typed on the card (kept per phone). Phrases with `"check": "review"` are hidden.
+- **Copy Chinese** on every driver card: copies `name_zh` + newline + `address_zh` for pasting into DiDi / Amap / WeChat. The button shows "Copied"; tapping it does not close the card.
+- **Next stop** (Today, during the trip): a card above the hotel with "Take me there" + Map for the Next item's place; hidden when that item has no place. Now and Next notes open by themselves once.
+- **Bring & watch** (Today, during the trip), rules in `watchList` in `site/logic.js`: *Passports* when a note mentions passport or an item mentions a train or flight; a *Monday* warning (Forbidden City closed, Temple of Heaven halls closed); *Last entry HH:MM · place* from "last entry HH:MM" in a note; *Sunset* from `content/sunset.json`, Chongli's table on days whose label names Chongli. To make a stop show Passports, write "passport" in its sheet note.
+- **Offline check** (Today): asks the service worker for its precache list and counts what is really in its cache: "Ready offline" or "Not ready: N of M files missing". The first visit says not ready, because the service worker only controls the page from the second open.
+- **Before you fly** checklist (Today, until the Beijing date reaches 7 Dec): `content/checklist.json`, ticks kept per phone in localStorage.
+- Content source is `content/` (written by hand / `python -I content/sunset.py`); the site reads the copies in `site/content/`. After editing: `cp content/*.json site/content/`, bump `APP_VERSION`. `test_build.py` fails if the copies differ.
+
 ## `site/trip.json` schema
 
 ```json

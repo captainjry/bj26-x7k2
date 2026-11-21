@@ -1,0 +1,18 @@
+{
+  "items": [
+    { "id": "alipay", "text": "Alipay: install, verify passport, link a foreign card", "who": "both" },
+    { "id": "wechat", "text": "WeChat: install, sign in, add WeChat Pay with a foreign card if it accepts one", "who": "both" },
+    { "id": "didi", "text": "DiDi: install it, or find DiDi inside Alipay, and add payment", "who": "both" },
+    { "id": "amap", "text": "Amap (高德地图): install and try one search", "who": "him" },
+    { "id": "translate-iphone", "text": "Apple Translate: download Thai and Chinese (Mandarin) for offline", "who": "her" },
+    { "id": "translate-samsung", "text": "Google Translate: download Chinese and Thai offline packs", "who": "him" },
+    { "id": "esim", "text": "eSIM or roaming that routes outside China: install and test before flying", "who": "both" },
+    { "id": "card-overseas", "text": "Bank app: turn on overseas use for the cards linked to Alipay", "who": "both" },
+    { "id": "trip-site", "text": "Open this trip site online once and add it to the home screen", "who": "both" },
+    { "id": "cash", "text": "Some yuan cash in small notes as a backup", "who": "both" },
+    { "id": "power-bank", "text": "Power bank in carry-on, 100 Wh or less, rating printed on it", "who": "both" },
+    { "id": "touch-gloves", "text": "Touchscreen gloves, so the phone works outside", "who": "both" },
+    { "id": "tissues", "text": "Tissue packs and wet wipes", "who": "both" },
+    { "id": "hand-warmers", "text": "Hand warmers", "who": "both" }
+  ]
+}

@@ -1,6 +1,6 @@
 // Run: node site/test_logic.mjs
 import assert from 'node:assert/strict';
-import { localNow, todayState, parseTime, nowAndNext, hotelTonight, mapUrl } from './logic.js';
+import { localNow, todayState, parseTime, nowAndNext, hotelTonight, mapUrl, nextStopPlace, checklistVisible, watchList } from './logic.js';
 
 const days = ['07', '08', '09', '10', '11', '12', '13', '14'].map((d) => ({ date: `2026-12-${d}` }));
 
@@ -39,5 +39,31 @@ const samsung = 'Mozilla/5.0 (Linux; Android 16; SM-S926B) AppleWebKit/537.36 Sa
 assert.equal(mapUrl(iphone, place), 'https://maps.apple.com/?q=%E9%9B%8D%E5%92%8C%E5%AE%AB');
 assert.equal(mapUrl(ipad, place), 'https://maps.apple.com/?q=%E9%9B%8D%E5%92%8C%E5%AE%AB');
 assert.equal(mapUrl(samsung, place), 'https://uri.amap.com/search?keyword=%E9%9B%8D%E5%92%8C%E5%AE%AB&city=%E5%8C%97%E4%BA%AC&src=bj26');
+
+// Next stop: the Next item's place; null when it has none or the day is over.
+const stops = [{ time: '09:00', place: 'a' }, { time: '11:00', text: 'Ski Day' }, { time: '13:00', place: 'b' }];
+assert.equal(nextStopPlace(stops, 8 * 60), 'a');
+assert.equal(nextStopPlace(stops, 10 * 60), null);
+assert.equal(nextStopPlace(stops, 12 * 60), 'b');
+assert.equal(nextStopPlace(stops, 14 * 60), null);
+
+assert.equal(checklistVisible('2026-12-06', '2026-12-07'), true);
+assert.equal(checklistVisible('2026-12-07', '2026-12-07'), false);
+
+const sunset = { places: {
+  beijing: { days: [{ date: '2026-12-07', sunset: '16:49' }, { date: '2026-12-10', sunset: '16:49' }] },
+  chongli: { days: [{ date: '2026-12-10', sunset: '16:50' }] },
+} };
+const kinds = (w) => w.map((x) => x.kind);
+// Monday 7 Dec, passport in a note, Beijing sunset
+const mon = { date: '2026-12-07', label: 'Day 1 - Beijing', items: [{ text: 'Tian an men', note: 'ID type Passport' }] };
+assert.deepEqual(kinds(watchList(mon, {}, sunset)), ['passport', 'monday', 'sunset']);
+assert.equal(watchList(mon, {}, sunset)[2].text, 'Sunset 16:49');
+// a train needs passports even without the word; Chongli days use Chongli's sunset
+const ski = { date: '2026-12-10', label: 'Day 4 - Chongli', items: [{ text: 'Train -> Chongli' }] };
+assert.deepEqual(watchList(ski, {}, sunset).map((x) => x.text), ['Passports', 'Sunset 16:50']);
+// last entry, named by its place
+const fc = { date: '2026-12-13', label: 'Day 7 - Beijing', items: [{ text: 'FC', place: 'fc', note: 'Opens 08:30, last entry 15:30, closed Mondays.' }] };
+assert.deepEqual(watchList(fc, { fc: { name: 'Forbidden City' } }, sunset).map((x) => x.text), ['Last entry 15:30 · Forbidden City']);
 
 console.log('test_logic: all passed');

@@ -56,3 +56,20 @@ for secret in ('@', 'passport no', 'booking ref'):
     assert secret not in text.lower(), secret
 
 print('OK', sum(len(d['items']) for d in trip['days']), 'items')
+
+# Content for phrases / sunset / checklist: content/ is the source, site/content/ the published copy.
+for name in ('phrases.json', 'sunset.json', 'checklist.json'):
+    src = (HERE / 'content' / name).read_bytes()
+    assert src == (HERE / 'site' / 'content' / name).read_bytes(), f'site/content/{name} differs from content/{name}: copy it'
+    assert f"'content/{name}'" in (HERE / 'site' / 'sw.js').read_text(encoding='utf-8'), f'{name} not precached'
+phrases = json.loads((HERE / 'content' / 'phrases.json').read_text(encoding='utf-8'))
+for group in phrases['groups']:
+    for phrase in group['phrases']:
+        assert phrase['en'] and phrase['th'] and phrase['zh'], phrase['id']
+        assert phrase.get('check') in ('ok', 'review'), ('phrase not back-translated', phrase['id'])
+        assert ('{size}' in phrase['zh']) == ('{size}' in phrase['en']), phrase['id']
+checklist = json.loads((HERE / 'content' / 'checklist.json').read_text(encoding='utf-8'))
+assert all(it['who'] in ('both', 'her', 'him') for it in checklist['items'])
+sunset = json.loads((HERE / 'content' / 'sunset.json').read_text(encoding='utf-8'))
+assert [d['date'] for d in sunset['places']['chongli']['days']] == dates
+print('OK content')

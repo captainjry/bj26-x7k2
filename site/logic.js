@@ -75,3 +75,36 @@ export function mapUrl(ua, place) {
   const city = encodeURIComponent(place.city_zh || '');
   return `https://uri.amap.com/search?keyword=${keyword}&city=${city}&src=bj26`;
 }
+
+// Driver-card place of the Next item, or null when there is none or it has no place.
+export function nextStopPlace(items, minutes) {
+  const { next } = nowAndNext(items, minutes);
+  if (next === -1) return null;
+  return items[next].place ?? null;
+}
+
+// The before-you-fly checklist shows until the trip's first Beijing date.
+export function checklistVisible(ymd, startYmd) {
+  return ymd < startYmd;
+}
+
+// "Bring & watch" for one day. Passports: a note says passport, or an item is a train or flight
+// (stations and airports check ID). Last entry: "last entry HH:MM" in a note. Sunset: Chongli's
+// table on days whose label names Chongli, Beijing's otherwise.
+export function watchList(day, places, sunset) {
+  const out = [];
+  const passport = day.items.some((it) => /passport/i.test(it.note || '') || /\b(train|flight)\b/i.test(it.text || ''));
+  if (passport) out.push({ kind: 'passport', text: 'Passports' });
+  const weekday = new Date(`${day.date}T12:00:00Z`).getUTCDay();
+  if (weekday === 1) out.push({ kind: 'monday', text: 'Monday: Forbidden City closed, Temple of Heaven halls closed' });
+  day.items.forEach((it) => {
+    const m = /last entry (\d{1,2}[:.]\d{2})/i.exec(it.note || '');
+    if (!m) return;
+    const where = places[it.place]?.name || it.text.split('\n')[0];
+    out.push({ kind: 'entry', text: `Last entry ${m[1].replace('.', ':')} · ${where}` });
+  });
+  const table = sunset?.places?.[/chongli/i.test(day.label) ? 'chongli' : 'beijing'];
+  const sun = table?.days.find((d) => d.date === day.date);
+  if (sun) out.push({ kind: 'sunset', text: `Sunset ${sun.sunset}` });
+  return out;
+}

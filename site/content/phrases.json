@@ -1,0 +1,57 @@
+{
+  "groups": [
+    {
+      "id": "food",
+      "label": "Food",
+      "phrases": [
+        {"id": "two-people", "en": "Table for two", "th": "สองที่", "zh": "我们两位", "back_en": "We are two (people)", "check": "ok"},
+        {"id": "not-spicy", "en": "Not spicy at all, please", "th": "ไม่เผ็ดเลยนะ", "zh": "请不要放辣椒，一点辣都不要", "back_en": "Please don't add chili peppers, not even a little spicy", "check": "ok"},
+        {"id": "no-coriander", "en": "No coriander, please", "th": "ไม่ใส่ผักชีนะ", "zh": "请不要放香菜", "back_en": "Please don't add coriander", "check": "ok"},
+        {"id": "suancai-yu", "en": "Do you have pickled-cabbage fish?", "th": "มีปลาต้มผักกาดดองไหม", "zh": "请问有酸菜鱼吗？", "back_en": "Excuse me, do you have pickled-cabbage fish?", "check": "ok"},
+        {"id": "alipay", "en": "Can we pay with Alipay?", "th": "จ่ายด้วย Alipay ได้ไหม", "zh": "可以用支付宝付款吗？", "back_en": "Can we pay with Alipay?", "check": "ok"},
+        {"id": "bill", "en": "The bill, please", "th": "เช็คบิลด้วย", "zh": "您好，买单", "back_en": "Hello, the bill please", "check": "ok"},
+        {"id": "takeaway", "en": "Please pack the leftovers to take away", "th": "ช่วยห่อกลับบ้านให้หน่อย", "zh": "请帮我们打包", "back_en": "Please pack it up for us", "check": "ok"}
+      ]
+    },
+    {
+      "id": "toilet",
+      "label": "Toilet",
+      "phrases": [
+        {"id": "where-toilet", "en": "Where is the toilet?", "th": "ห้องน้ำอยู่ที่ไหน", "zh": "请问洗手间在哪里？", "back_en": "Excuse me, where is the restroom?", "check": "ok"},
+        {"id": "seated-toilet", "en": "Is there a sit-down toilet?", "th": "มีชักโครกแบบนั่งไหม", "zh": "请问有坐便吗？", "back_en": "Excuse me, is there a sit-down toilet?", "check": "ok"}
+      ]
+    },
+    {
+      "id": "tickets",
+      "label": "Tickets",
+      "phrases": [
+        {"id": "booked-passport", "en": "We booked with this passport", "th": "เราจองไว้ด้วยพาสปอร์ตเล่มนี้", "zh": "我们已经用这本护照在网上预约了", "back_en": "We have already made an online reservation using this passport", "check": "ok"},
+        {"id": "where-entrance", "en": "Where is the entrance?", "th": "ทางเข้าอยู่ที่ไหน", "zh": "请问入口在哪里？", "back_en": "Excuse me, where is the entrance?", "check": "ok"}
+      ]
+    },
+    {
+      "id": "ski",
+      "label": "Ski rental",
+      "phrases": [
+        {"id": "rent-snowboard", "en": "We are beginners and want to rent snowboards", "th": "เราเป็นมือใหม่ อยากเช่าสโนว์บอร์ด", "zh": "我们是新手，想租单板", "back_en": "We are beginners and want to rent snowboards", "check": "ok"},
+        {"id": "boot-size", "en": "My snowboard boot size is EU {size}", "th": "รองเท้าไซซ์ EU {size}", "zh": "我的雪鞋码是欧码 {size}", "back_en": "My ski boot size is EU {size}", "check": "ok"},
+        {"id": "boots-tight", "en": "These boots are too tight, one size bigger please", "th": "รองเท้าคับไป ขอใหญ่ขึ้นหนึ่งไซซ์", "zh": "雪鞋太紧了，请帮我换大一码", "back_en": "The ski boots are too tight, please help me change to one size bigger", "check": "ok"},
+        {"id": "helmet", "en": "We also need to rent helmets", "th": "ขอเช่าหมวกกันน็อกด้วย", "zh": "我们还要租头盔", "back_en": "We also want to rent helmets", "check": "ok"},
+        {"id": "beginner-lesson", "en": "We want a beginner snowboard lesson", "th": "อยากเรียนสโนว์บอร์ดสำหรับมือใหม่", "zh": "我们想上单板新手课", "back_en": "We want to take a beginner snowboard lesson", "check": "ok"},
+        {"id": "english-instructor", "en": "Is there an instructor who speaks English?", "th": "มีครูที่พูดภาษาอังกฤษได้ไหม", "zh": "有会说英语的教练吗？", "back_en": "Is there an instructor who can speak English?", "check": "ok"},
+        {"id": "lockers", "en": "Where are the lockers?", "th": "ตู้ล็อกเกอร์อยู่ที่ไหน", "zh": "请问储物柜在哪里？", "back_en": "Excuse me, where are the lockers?", "check": "ok"}
+      ]
+    },
+    {
+      "id": "help",
+      "label": "Help",
+      "phrases": [
+        {"id": "no-chinese", "en": "We don't speak Chinese. Can we use a phone translator?", "th": "เราพูดจีนไม่ได้ ใช้แอปแปลภาษาในมือถือได้ไหม", "zh": "我们不会说中文，可以用手机翻译吗？", "back_en": "We can't speak Chinese; can we use phone translation?", "check": "ok"},
+        {"id": "write-price", "en": "Please write down the price", "th": "ช่วยเขียนราคาให้ดูหน่อย", "zh": "麻烦您把价格写下来，谢谢", "back_en": "Could you please write the price down? Thank you", "check": "ok"},
+        {"id": "photo", "en": "Can you take a photo of us?", "th": "ช่วยถ่ายรูปให้เราหน่อยได้ไหม", "zh": "可以帮我们拍张照吗？", "back_en": "Could you take a photo for us?", "check": "ok"},
+        {"id": "call-taxi", "en": "Can you call a taxi for us?", "th": "ช่วยเรียกแท็กซี่ให้หน่อยได้ไหม", "zh": "可以帮我们叫一辆出租车吗？", "back_en": "Could you call a taxi for us?", "check": "ok"},
+        {"id": "pharmacy", "en": "Is there a pharmacy nearby?", "th": "แถวนี้มีร้านขายยาไหม", "zh": "请问附近有药店吗？", "back_en": "Excuse me, is there a pharmacy nearby?", "check": "ok"}
+      ]
+    }
+  ]
+}
