@@ -14,6 +14,8 @@ const icon = {
 const svg = (name) => `<svg viewBox="0 0 24 24" aria-hidden="true">${icon[name]}</svg>`;
 
 let T = null; // trip.json
+let route = null; // the WebGL scene, once it runs
+let heroView = { day: null };
 
 // ?today=2026-12-10&time=14:30 fakes the clock for testing.
 function now() {
@@ -106,8 +108,11 @@ function installHelp() {
 }
 
 // size: 'tall' (Today), 'mid' (a day), 'short' (credits). The cover of the visible day loads eagerly.
-function setHero(eyebrow, title, sub, cover, size) {
+// view: what the route scene frames, { day: index } or { day: null } for the whole trip.
+function setHero(eyebrow, title, sub, cover, size, view) {
   $('#hero').dataset.size = size;
+  heroView = view;
+  route?.show(view);
   const img = $('#cover');
   if (cover) {
     if (img.getAttribute('src') !== cover.file) img.src = cover.file;
@@ -132,11 +137,11 @@ function renderToday() {
   if (state.phase === 'before') {
     const n = state.daysUntil;
     const title = n === 1 ? 'Trip starts tomorrow' : `${n} days to go`;
-    setHero(T.trip.title, title, `Day 1 · ${dayTitle(day)} · ${place}`, day.cover, 'tall');
+    setHero(T.trip.title, title, `Day 1 · ${dayTitle(day)} · ${place}`, day.cover, 'tall', { day: null });
   } else if (state.phase === 'after') {
-    setHero('Trip finished', place, `Last day · ${dayTitle(day)}`, day.cover, 'tall');
+    setHero('Trip finished', place, `Last day · ${dayTitle(day)}`, day.cover, 'tall', { day: null });
   } else {
-    setHero(`Today · Day ${state.dayIndex + 1} of ${T.days.length}`, place, dayTitle(day), day.cover, 'tall');
+    setHero(`Today · Day ${state.dayIndex + 1} of ${T.days.length}`, place, dayTitle(day), day.cover, 'tall', { day: state.dayIndex });
   }
   const hotelDate = state.phase === 'before' ? T.trip.start : ymd;
   const heading = state.phase === 'during' ? 'Today' : state.phase === 'before' ? 'Day 1 plan' : 'Last day';
@@ -163,7 +168,7 @@ function markNow() {
 function renderDays(index) {
   const i = Math.min(Math.max(index, 0), T.days.length - 1);
   const day = T.days[i];
-  setHero(`Day ${i + 1} of ${T.days.length} · ${dayTitle(day)}`, splitLabel(day.label).place, T.trip.title, day.cover, 'mid');
+  setHero(`Day ${i + 1} of ${T.days.length} · ${dayTitle(day)}`, splitLabel(day.label).place, T.trip.title, day.cover, 'mid', { day: i });
   const strip = T.days.map((d, k) => {
     const dt = new Date(`${d.date}T12:00:00Z`);
     const wd = dt.toLocaleDateString('en-GB', { weekday: 'short', timeZone: 'UTC' });
@@ -176,7 +181,7 @@ function renderDays(index) {
 
 // CC BY / BY-SA need author, licence and source next to the work they credit.
 function renderCredits() {
-  setHero(T.trip.title, 'Photo credits', 'Wikimedia Commons, free licences', null, 'short');
+  setHero(T.trip.title, 'Photo credits', 'Wikimedia Commons, free licences', null, 'short', { day: null });
   const rows = [];
   T.days.forEach((d, k) => { if (d.cover) rows.push({ use: `Day ${k + 1} cover`, photo: d.cover }); });
   Object.values(T.places).forEach((p) => { if (p.photo) rows.push({ use: p.name, photo: p.photo }); });
@@ -237,12 +242,27 @@ function watchUpdates(reg) {
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') reg.update().catch(() => {}); });
 }
 
-// ---------- snow ----------
-function maybeSnow() {
+// ---------- route scene ----------
+// The cover photo is the first paint and the whole fallback; the scene fades in over it, then the
+// photo shrinks to a postcard. Lost context (iOS does this under memory pressure) puts the photo back.
+function maybeRoute() {
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const probe = document.createElement('canvas');
-  if (!(probe.getContext('webgl2') || probe.getContext('webgl'))) return; // CSS gradient stays
-  import('./snow.js').then((m) => m.startSnow($('#hero'))).catch(() => {});
+  if (!document.createElement('canvas').getContext('webgl2')) return; // three r170 needs WebGL2
+  import('./route.js').then((m) => {
+    const hero = $('#hero');
+    const scene = m.startRoute(hero, T);
+    route = scene;
+    scene.show(heroView);
+    scene.canvas.addEventListener('webglcontextlost', () => {
+      route = null;
+      scene.canvas.remove();
+      hero.classList.remove('gl');
+    });
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      scene.canvas.classList.add('on');
+      setTimeout(() => { if (route) hero.classList.add('gl'); }, 900);
+    }));
+  }).catch(() => {});
 }
 
 // ---------- boot ----------
@@ -264,7 +284,7 @@ setInterval(() => { if (T && !location.hash.startsWith('#days') && !location.has
 
 fetch('trip.json')
   .then((r) => r.json())
-  .then((json) => { T = json; render(); maybeSnow(); })
+  .then((json) => { T = json; render(); maybeRoute(); })
   .catch(() => { $('#view').innerHTML = '<p class="empty">Could not load the trip. Open once with internet.</p>'; });
 
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then(watchUpdates).catch(() => {});
